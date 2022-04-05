@@ -3,27 +3,26 @@ import React from 'react';
 
 import { CalendarContainer } from './containers/calendar-container';
 import { PopupContainer } from './containers/popup-container';
+import { ChosenDateContextConsumer } from './context/chosen-date-context';
 import { PopupContextConsumer } from './context/popup-context';
-import { SelectedDateContextConsumer } from './context/selected-date-context';
 
 const App = () => {
+
   return (
-    <SelectedDateContextConsumer>
-      {({selectedDate, setSelectedDate}) => (
-      
-      <PopupContextConsumer>
-        {({popupOpen, togglePopup}) => (
-          <>
+    <PopupContextConsumer>
+    {({ isPopupOpen, setIsPopupOpen, togglePopup}) => (
+      <ChosenDateContextConsumer>
+        {({chosenDate, setChosenDate}) => (
+        <>
           <div>
-            <CalendarContainer togglePopup={togglePopup} setSelectedDate={setSelectedDate} />
+            <CalendarContainer setChosenDate={setChosenDate} setIsPopupOpen={setIsPopupOpen} />
           </div>
-          <PopupContainer popupOpen={popupOpen} togglePopup={togglePopup} selectedDate={selectedDate} />
-          </>
+          <PopupContainer chosenDate={chosenDate} isPopupOpen={isPopupOpen} togglePopup={togglePopup} />
+        </>
         )}
-      </PopupContextConsumer>
-        
-      )}
-    </SelectedDateContextConsumer>
+      </ChosenDateContextConsumer>
+    )}
+    </PopupContextConsumer>
   );
 }
 

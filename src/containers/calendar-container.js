@@ -4,7 +4,7 @@ import { getNumOfDaysInMonth } from '../helpers/get-number-of-days-in-a-month';
 import { getFirstDayOfMonth } from '../helpers/get-first-day-of-the-month';
 
 
-export const CalendarContainer = ({ togglePopup, setSelectedDate }) => {    
+export const CalendarContainer = ({ setChosenDate, setIsPopupOpen }) => {    
     const [month, setMonth] = useState(new Date().getMonth());
     const [year, setYear] = useState(new Date().getFullYear());
     const [firstDayOfMonth, setFirstDayOfMonth] = useState(getFirstDayOfMonth(month, year));
@@ -15,11 +15,12 @@ export const CalendarContainer = ({ togglePopup, setSelectedDate }) => {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     
     const handleClick = (day, index) => {
-        setSelectedDate({day, month, year});
+        setChosenDate({day, month, year});
         index < firstDayOfMonth ? handlePrevArrowClick() 
          : index > numDays + firstDayOfMonth - 1 ? handleNextArrowClick() 
-         : togglePopup()
+         : setIsPopupOpen(true);
     }
+    
 
     const handlePrevArrowClick = () => {
         if (month === 0) {
@@ -78,7 +79,7 @@ export const CalendarContainer = ({ togglePopup, setSelectedDate }) => {
                     </DayBox>
                 ))}
                 {arrayOfDaysInMonth.map((day, index) => (
-                <DayBox key={`${day}${index}`}>
+                <DayBox key={`${day}${index}`} datebox={true}>
                     
                     <DayBox.Date 
                         onClick={() => handleClick(day, index)} 

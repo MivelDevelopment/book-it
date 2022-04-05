@@ -1,17 +1,25 @@
 import React from 'react';
 
-import { SchedulePopup } from "../components";
+import { PopupOverlay } from "../components";
+import { FormContainer } from './form-container';
+import { ScheduleTimeContainer } from './schedule-time-container';
 
-export const PopupContainer = ({ popupOpen, togglePopup, selectedDate }) => {    
+export const PopupContainer = ({ chosenDate, isPopupOpen, togglePopup }) => {    
 
     return (
-        <SchedulePopup 
-            onClick={() => togglePopup()} 
-            popupOpen={popupOpen}
+        <PopupOverlay 
+            className="popup-overlay"
+            isPopupOpen={isPopupOpen}
+            onClick={togglePopup}
         >
-            <h1>
-                {selectedDate.day}. {new Date(selectedDate.year, selectedDate.month).toLocaleString('en-US', { month: 'long' })}  {selectedDate.year}.
-            </h1>
-        </SchedulePopup>
+            <PopupOverlay.Container className="popup-content">
+                <h2>
+                    {chosenDate.day}. {new Date(chosenDate.year, chosenDate.month).toLocaleString('en-US', { month: 'long' })}  {chosenDate.year}.
+                </h2>
+
+                <FormContainer />
+                <ScheduleTimeContainer />
+            </PopupOverlay.Container>
+        </PopupOverlay>
     )
 }

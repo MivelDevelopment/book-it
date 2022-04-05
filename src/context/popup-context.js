@@ -1,16 +1,18 @@
-import React, { createContext, useState } from 'react';
+import React, { useState, createContext } from 'react';
 
 const { Provider, Consumer } = createContext();
 
 
 const PopupContextProvider = ({ children }) => {
-    const [popupOpen, setPopupOpen] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    const togglePopup = () => {
-        setPopupOpen(popupOpen => !popupOpen);
+    const togglePopup = (e) => {
+        const isOverlay = e.target.classList.contains('popup-overlay');
+        
+        isOverlay ? setIsPopupOpen(false) : setIsPopupOpen(true);
     }
     return (
-        <Provider value={{popupOpen, togglePopup}}>
+        <Provider value={{isPopupOpen, setIsPopupOpen, togglePopup}}>
             {children}
         </Provider>
     )

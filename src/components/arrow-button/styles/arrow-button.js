@@ -6,4 +6,5 @@ export const Button = styled.button`
     justify-content: center;
     font-size: 1.25rem;
     padding: .125em .375em;
+    cursor: pointer;
 `

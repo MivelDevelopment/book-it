@@ -5,6 +5,8 @@ export const Container = styled.div`
     flex-shrink: 1;
     align-items: center;
     justify-content: center;
+
+    cursor: ${({ datebox }) => datebox && 'pointer'};
 `;
 
 export const DateContent = styled.div`
@@ -17,6 +19,7 @@ export const DateContent = styled.div`
     background-color: ${({month}) => month === 'curr' ? 'lightblue' : 'lightgray'};
     border: 1px solid black;
     border-radius: 10px;
+    user-select: none;
 `;
 
 export const DayContent = styled(DateContent)`

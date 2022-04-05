@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { PopupContextProvider } from './context/popup-context';
-import { SelectedDateContextProvider } from './context/selected-date-context';
+import { ChosenDateContextProvider } from './context/chosen-date-context';
+import { PopupContextProvider} from './context/popup-context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SelectedDateContextProvider>
     <PopupContextProvider>
+    <ChosenDateContextProvider>
       <App />
+    </ChosenDateContextProvider>
     </PopupContextProvider>
-    </SelectedDateContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
