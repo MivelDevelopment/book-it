@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { PopupOverlay } from "../components";
+import { ChosenTimeContextConsumer } from '../context/chosen-time-context';
+import { ScheduledAppointmentsConsumer } from '../context/scheduled-appointments-context';
 import { FormContainer } from './form-container';
 import { ScheduleTimeContainer } from './schedule-time-container';
 
@@ -11,15 +13,28 @@ export const PopupContainer = ({ chosenDate, isPopupOpen, togglePopup }) => {
             className="popup-overlay"
             isPopupOpen={isPopupOpen}
             onClick={togglePopup}
-        >
+        >  
+            <ChosenTimeContextConsumer>
+            {({ chosenTime, setChosenTime }) => (
             <PopupOverlay.Container className="popup-content">
-                <h2>
-                    {chosenDate.day}. {new Date(chosenDate.year, chosenDate.month).toLocaleString('en-US', { month: 'long' })}  {chosenDate.year}.
-                </h2>
+                <PopupOverlay.TimeAndDate>
+                    <p className="date-label">
+                        {chosenDate.day}. {new Date(chosenDate.year, chosenDate.month).toLocaleString('en-US', { month: 'long' })}  {chosenDate.year}.
+                    </p>
+                    <p className="time-label">
+                        {chosenTime ? chosenTime : "Select an appointment"}
+                    </p>
+                </PopupOverlay.TimeAndDate>
 
-                <FormContainer />
-                <ScheduleTimeContainer />
+                <ScheduledAppointmentsConsumer>
+                    {({scheduledAppointments, setScheduledAppointments}) => (
+                        <FormContainer chosenTime={chosenTime} chosenDate={chosenDate} setScheduledAppointments={setScheduledAppointments} scheduledAppointments={scheduledAppointments}/>
+                    )}
+                </ScheduledAppointmentsConsumer>
+                <ScheduleTimeContainer setChosenTime={setChosenTime} />
             </PopupOverlay.Container>
+            )}
+            </ChosenTimeContextConsumer>
         </PopupOverlay>
     )
 }

@@ -3,13 +3,30 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
     overflow: auto;
     max-height: 60vh;
-    border: 2px solid black;
-    border-right: none;
     padding: 20px;
 
 `;
 
-export const InnerContainer = styled.div``;
+export const InnerContainer = styled.div`
+    margin: 2px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
 
-export const TimeStamp = styled.p``;
+    transform: ${({chosen}) => chosen ? 'scale(.98)' : 'scale(1)'};
+    transition: .1s;
+
+    &:hover {
+        transform: scale(.98);
+    }
+`;
+
+export const TimeStamp = styled.p`
+    margin: 0;
+    padding: 10px 0 10px 10px;
+    user-select: none;
+`;
 
