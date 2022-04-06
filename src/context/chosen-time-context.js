@@ -1,15 +1,15 @@
 import React, { createContext, useState } from 'react';
 
-const { Provider, Consumer } = createContext();
+const ChosenTimeContext = createContext();
 
 const ChosenTimeContextProvider = ({ children }) => {
     const [ chosenTime, setChosenTime ] = useState('');
 
     return (
-        <Provider value={{chosenTime, setChosenTime}}>
+        <ChosenTimeContext.Provider value={{chosenTime, setChosenTime}}>
             {children}
-        </Provider>
+        </ChosenTimeContext.Provider>
     )
 }
 
-export {ChosenTimeContextProvider, Consumer as ChosenTimeContextConsumer}
+export {ChosenTimeContextProvider, ChosenTimeContext}

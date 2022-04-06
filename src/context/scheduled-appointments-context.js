@@ -1,16 +1,16 @@
 import React, { createContext, useState } from 'react';
 
-const { Provider, Consumer } = createContext();
+const ScheduledAppointmentsContext = createContext();
 
-const ScheduledAppointmentsProvider = ({children}) => {
+const ScheduledAppointmentsContextProvider = ({children}) => {
     const [scheduledAppointments, setScheduledAppointments] = useState([]);
     
     return (
-        <Provider value={{scheduledAppointments, setScheduledAppointments}}>
+        <ScheduledAppointmentsContext.Provider value={{scheduledAppointments, setScheduledAppointments}}>
             {children}
-        </Provider>
+        </ScheduledAppointmentsContext.Provider>
     )
 }
 
 
-export {ScheduledAppointmentsProvider, Consumer as ScheduledAppointmentsConsumer}
+export {ScheduledAppointmentsContextProvider, ScheduledAppointmentsContext}
