@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { InputForm } from "../components";
 import { setAppointment } from '../helpers/set-appointments-for-date';
 
-export const FormContainer = ({ chosenTime, chosenDate, setScheduledAppointments, scheduledAppointments }) => {
+export const FormContainer = ({ chosenTime, setChosenTime, chosenDate, scheduledAppointments, setScheduledAppointments }) => {
     const [senderInfo, setSenderInfo] = useState({name: '', email: '', number: '', message: '' })
+    const [disableSubmit, setDisableSubmit] = useState(true);
 
     const handleChange = (e) => {
         let info = {...senderInfo};
@@ -14,14 +15,18 @@ export const FormContainer = ({ chosenTime, chosenDate, setScheduledAppointments
 
     const submitForm = (e) => {
         e.preventDefault();
-        setSenderInfo({name: '', email: '', number: '', message: '' });
         setAppointment({chosenTime, chosenDate, senderInfo}, setScheduledAppointments);
-        console.log(scheduledAppointments)
+        setSenderInfo({name: '', email: '', number: '', message: '' });
+        setChosenTime('');
         
         /**TODO continue from here
          * Check if there is and appointment in schedule
          */
     }
+
+    useEffect(() => {
+        setDisableSubmit(!chosenTime || !senderInfo.name || !senderInfo.email);
+    }, [chosenTime, senderInfo.name, senderInfo.email]);
 
     return (
         <InputForm onSubmit={submitForm}>
@@ -71,7 +76,7 @@ export const FormContainer = ({ chosenTime, chosenDate, setScheduledAppointments
             </InputForm.InputContainer>
 
             <InputForm.InputContainer>
-                <InputForm.SendBtn type="submit" disabled={!chosenTime || !senderInfo.name || !senderInfo.email}>Submit</InputForm.SendBtn>
+                <InputForm.SendBtn type="submit" disabled={disableSubmit}>Submit</InputForm.SendBtn>
             </InputForm.InputContainer>
 
         </InputForm>

@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 
-const { Provider, Consumer } = createContext();
+const PopupContext = createContext();
 
 
 const PopupContextProvider = ({ children }) => {
@@ -8,14 +8,14 @@ const PopupContextProvider = ({ children }) => {
 
     const togglePopup = (e) => {
         const isOverlay = e.target.classList.contains('popup-overlay');
-        
         isOverlay ? setIsPopupOpen(false) : setIsPopupOpen(true);
     }
+    
     return (
-        <Provider value={{isPopupOpen, setIsPopupOpen, togglePopup}}>
+        <PopupContext.Provider value={{isPopupOpen, setIsPopupOpen, togglePopup}}>
             {children}
-        </Provider>
+        </PopupContext.Provider>
     )
 }
 
-export { PopupContextProvider, Consumer as PopupContextConsumer };
+export { PopupContextProvider, PopupContext };

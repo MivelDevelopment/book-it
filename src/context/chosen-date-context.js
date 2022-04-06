@@ -1,15 +1,15 @@
 import React, {createContext, useState} from 'react';
 
-const { Provider, Consumer } = createContext();
+const ChosenDateContext = createContext();
 
 const ChosenDateContextProvider = ({ children }) => {
     const [chosenDate, setChosenDate] = useState({day: '', month: '', year:''});
     
     return (
-        <Provider value={{chosenDate, setChosenDate}}>
+        <ChosenDateContext.Provider value={{chosenDate, setChosenDate}}>
             {children}
-        </Provider>
+        </ChosenDateContext.Provider>
     )
 }
 
-export {ChosenDateContextProvider, Consumer as ChosenDateContextConsumer};
+export {ChosenDateContextProvider, ChosenDateContext};

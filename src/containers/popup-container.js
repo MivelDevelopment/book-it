@@ -28,10 +28,12 @@ export const PopupContainer = ({ chosenDate, isPopupOpen, togglePopup }) => {
 
                 <ScheduledAppointmentsConsumer>
                     {({scheduledAppointments, setScheduledAppointments}) => (
-                        <FormContainer chosenTime={chosenTime} chosenDate={chosenDate} setScheduledAppointments={setScheduledAppointments} scheduledAppointments={scheduledAppointments}/>
+                    <>
+                        <FormContainer chosenTime={chosenTime} setChosenTime={setChosenTime} chosenDate={chosenDate} scheduledAppointments={scheduledAppointments} setScheduledAppointments={setScheduledAppointments}/>
+                        <ScheduleTimeContainer setChosenTime={setChosenTime} chosenDate={chosenDate} scheduledAppointments={scheduledAppointments} />
+                    </>
                     )}
                 </ScheduledAppointmentsConsumer>
-                <ScheduleTimeContainer setChosenTime={setChosenTime} />
             </PopupOverlay.Container>
             )}
             </ChosenTimeContextConsumer>
