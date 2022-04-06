@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Booking app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is in progress. Stay tuned.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The idea behind this project is to book a schedule, whether an interview, limo, make a dentist appointment.
 
-### `npm start`
+### Idea
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Idea behind this app is to build something like Calendly, but not to copy-paste it.
+In the end I want it to be flexible to fit specific client's needs, like I said - recruiter, dentist, photographers.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Design
 
-### `npm test`
+Visual representation is my own, which will be styled to completion after functionalities are done.
+On the other hand, there isn't much wiggle room to make a calendar.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
 
-### `npm run build`
+Currently there is a calendar, if you click a day from previous or next month, you will change the calendar to that month.
+If you click a date in the current month, a popup modal will appear for that date.
+On the right-hand side of the popup modal you can select the time you want to make a schedule.
+On the left-hand side you enter your contact information and after you've filled required fields and picked a time, you can make an appointment.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I will update this section daily
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technology
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This app is made in React using functional components. 
+For state management I am using React's Context API.
+Components are built using styled-components.
 
-### `npm run eject`
+This section will be updated when needed.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Legal notice
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Book It app is my personal project. You are free to use some/none of the code presented here as you see fit, without any legal consequences, but you can't use this project in it's entirety and present it as your own.
