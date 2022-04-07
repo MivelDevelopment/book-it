@@ -44,4 +44,8 @@ Book It app is my personal project. You are free to use some/none of the code pr
 ## Reach out
 
 I have imagined this being a solo project, but if you want to colab, that could be fun too.  
-That being said, don't hesitate to reach out.
+That being said, don't hesitate to reach out.  
+
+#### Changelog
+
+Added user dashboard container 
