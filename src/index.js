@@ -7,7 +7,7 @@ import App from './App';
 import { ChosenDateContextProvider,
   PopupContextProvider,
   ChosenTimeContextProvider,
-  ScheduledAppointmentsContextProvider } from './context';
+  ScheduledAppointmentsContextProvider} from './context';
 
 
 ReactDOM.render(

@@ -6,7 +6,12 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    cursor: ${({ datebox }) => datebox && 'pointer'};
+    cursor: ${({ datebox }) => datebox ? 'pointer' : 'default'};
+    pointer-events: ${({ inThePast }) => inThePast ? 'none' : 'initial'};
+
+    & > div {
+        background-color:${({ inThePast }) => inThePast && 'rgba(255, 0, 0, .2)'};
+    }
 `;
 
 export const DateContent = styled.div`
@@ -16,7 +21,7 @@ export const DateContent = styled.div`
 
     min-height: 100px;
     width: 100px;
-    background-color: ${({month}) => month === 'curr' ? 'lightblue' : 'lightgray'};
+    background-color: ${({ month }) => month === 'curr' ? 'lightblue' : 'rgba(33, 33, 33, .3)'};
     border: 1px solid black;
     border-radius: 10px;
     user-select: none;

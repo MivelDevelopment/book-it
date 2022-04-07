@@ -4,6 +4,7 @@ import { Calendar, DayBox } from '../../components';
 import { CalendarHeadingContainer } from './calendar-heading-container';
 import { getNumOfDaysInMonth } from '../../helpers/get-number-of-days-in-a-month';
 import { getFirstDayOfMonth } from '../../helpers/get-first-day-of-the-month';
+import { getTodayDate } from '../../helpers/get-today-date';
 import { 
     ChosenDateContext, 
     PopupContext } from '../../context'
@@ -12,20 +13,24 @@ import {
 export const CalendarContainer = () => {   
     const { setChosenDate } = useContext(ChosenDateContext);
     const { setIsPopupOpen } = useContext(PopupContext);
-    
+
     const [month, setMonth] = useState(new Date().getMonth());
     const [year, setYear] = useState(new Date().getFullYear());
     const [firstDayOfMonth, setFirstDayOfMonth] = useState(getFirstDayOfMonth(month, year));
     const [numDays, setNumDays] = useState(getNumOfDaysInMonth(month, year));
     const [arrayOfDaysInMonth, setArrayOfDaysInMonth] = useState([]);
+    const [pastMonth, setPastMonth] = useState(false);
+    const [thisMonth, setThisMonth] = useState(true);
 
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     
+    const { today, todayMonth, todayYear } = getTodayDate();
 
     const handleClick = (day, index) => {
         setChosenDate({day, month, year});
         index < firstDayOfMonth ? goToPreviousMonth() 
          : index > numDays + firstDayOfMonth - 1 ? goToNextMonth() 
+         : pastMonth  || (thisMonth && day < today) ? setIsPopupOpen(false)
          : setIsPopupOpen(true);
     }
     
@@ -46,8 +51,7 @@ export const CalendarContainer = () => {
             setMonth(month => month + 1);
         }
     }
-    
-    
+        
     useEffect(() => {
         setNumDays(getNumOfDaysInMonth(month, year));
         setFirstDayOfMonth(getFirstDayOfMonth(month, year));
@@ -63,7 +67,11 @@ export const CalendarContainer = () => {
             
             return day = index - firstDayOfMonth +1;
         }));
-    }, [numDays, firstDayOfMonth, month, year])
+
+        setThisMonth(year === todayYear && month === todayMonth);
+        setPastMonth((year === todayYear && month < todayMonth) || year < todayYear);
+        
+    }, [numDays, firstDayOfMonth, month, year, todayYear, todayMonth])
 
 
     return (
@@ -82,7 +90,12 @@ export const CalendarContainer = () => {
                     </DayBox>
                 ))}
                 {arrayOfDaysInMonth.map((day, index) => (
-                    <DayBox key={`${day}${index}`} datebox={true}>
+                    <DayBox 
+                        key={`${day}${index}`} 
+                        datebox={true} 
+                        inThePast={(pastMonth && !(index < firstDayOfMonth) && !(index > numDays + firstDayOfMonth - 1)) 
+                                || (thisMonth && day < today) }
+                    >
                         
                         <DayBox.Date 
                             onClick={() => handleClick(day, index)} 
