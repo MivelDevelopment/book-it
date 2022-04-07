@@ -21,7 +21,7 @@ On the other hand, there isn't much wiggle room to make a calendar.
 Currently there is a calendar.  
 If you click a day from previous or next month, you will change the calendar to that month.  
 If you click a date in the current month, a popup modal will appear for that date.  
-If you click on a past date in the current month, no popup will appear.
+If you click on a past date in the current month, no popup will appear.  
 On the right-hand side of the popup modal you can select the time you want to make a schedule.  
 On the left-hand side you enter your contact information.  
 After you've filled required fields and picked a time, you can make an appointment.
