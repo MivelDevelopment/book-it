@@ -27,10 +27,7 @@ export const CalendarContainer = () => {
     const { today, todayMonth, todayYear } = getTodayDate();
 
     const handleClick = (day, index) => {
-        setChosenDate({
-            day: day.toString().length < 2 ? `0${day.toString().length}` : day.toString().length, 
-            month: month, 
-            year});
+        setChosenDate({ day, month, year});
         index < firstDayOfMonth ? goToPreviousMonth() 
          : index > numDays + firstDayOfMonth - 1 ? goToNextMonth() 
          : pastMonth  || (thisMonth && day < today) ? setIsPopupOpen(false)

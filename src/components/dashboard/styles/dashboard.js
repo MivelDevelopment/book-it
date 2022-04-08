@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const InnerContainer = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
 
     min-height: 80vh;
     width: 80%;
@@ -24,13 +24,32 @@ export const InnerContainer = styled.div`
 `;
 
 export const InnerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: block;
     
     height: 100%;
-    width: 50%;
-    padding: 40px;
+    width: 45%;
+    
+    position: relative;
+`;
+
+export const InnerContents = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    
+    max-height: calc(80vh - 20px);
+    overflow: hidden;
+    position: absolute;
+
+    top: 0; left: 0;
+    width: 100%;
+    padding: 40px 0;
+
+    z-index: ${({right, leftClicked}) => right && leftClicked ? '1' : right && !leftClicked && '2'};
+    z-index: ${({left, rightClicked}) => left && rightClicked ? '1' : left && !rightClicked && '2'};
+    left: ${({right, openSchedule}) => right && openSchedule && '-107%'};
+    
+    transition: .4s;
 `;
 
 export const SectionTitle = styled.h2`

@@ -1,35 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { AppointmentList } from '../../../components';
-
-import { ScheduledAppointmentsContext } from '../../../context';
 import { AppointmentListItem } from './appointment-list-item';
+import { mergeSort } from '../../../helpers/sort-from-lowest';
+import { ScheduledAppointmentsContext } from '../../../context';
 
-export const AppointmentListContainer = () => {
+
+
+export const AppointmentListContainer = ({ openSchedule, setOpenSchedule, currentAppointmentShown, setCurrentAppointmentShown }) => {
     const { scheduledAppointments} = useContext(ScheduledAppointmentsContext)
 
-    const handleClick = () => {
-        console.log('clickity');
+    const handleClick = (booking) => {
+        if (!openSchedule || booking.id !== currentAppointmentShown.id) {
+            setCurrentAppointmentShown(booking);
+            setOpenSchedule(true);
+        } else {
+            setOpenSchedule(false);
+        }
     }
 
-    let appointmentsArray = scheduledAppointments.map(({appointment}) => (
+    let sortedIds = scheduledAppointments.reduce((acc, curr) => mergeSort([...acc, curr.id]), [])
+
+    let sortedAppointmentsArray = sortedIds.map(id => scheduledAppointments.find(item => item.id === id));
+
+    let sortedAppointmentList = sortedAppointmentsArray.map(booking => {
+        const { appointment } = booking;
+        return (
         <AppointmentListItem 
             key={`${appointment.day}${appointment.month}${appointment.year}${appointment.time}`}
-            appointment={appointment} 
-            handleClick={handleClick}
+            booking={booking} 
+            handleClick={() => handleClick(booking)}
         />
-    ))
-    
-    console.log(scheduledAppointments);
+    )})
+
+
 
     return (
         <AppointmentList>
-            {appointmentsArray.length < 1 ? 
+            {scheduledAppointments.length < 1 ? 
                 <AppointmentList.Subheading>
                     Your schedule is wide open!
                 </AppointmentList.Subheading>
             :
-                appointmentsArray
+            sortedAppointmentList
             }
         </AppointmentList>
     )

@@ -6,3 +6,4 @@ export { default as InputForm } from './input-form';
 export { default as ScheduleTime } from './schedule-time';
 export { default as Dashboard } from './dashboard';
 export { default as AppointmentList } from './appointment-list';
+export { default as AppointmentInfo } from './appointment-info';

@@ -18,7 +18,15 @@ On the other hand, there isn't much wiggle room to make a calendar.
 
 ### Features
 
-Currently there is a calendar.  
+#### Dashboard
+
+For development purposes user dashboard is shown on top of calendar.  
+When you make an appointment, it will be shown on the left-hand side of dashboard.  
+Appointments are sorted in order from soonest to latest scheduled.  
+When you click on the appointment, right side switches to show selected appointment's info.  
+
+##### Calendar
+
 If you click a day from previous or next month, you will change the calendar to that month.  
 If you click a date in the current month, a popup modal will appear for that date.  
 If you click on a past date in the current month, no popup will appear.  
