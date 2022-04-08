@@ -8,7 +8,7 @@ import { DashboardContainer } from './containers/dashboard/dashboard-container';
 const App = () => {
   return (
     <>
-      {/* <DashboardContainer /> */}
+      <DashboardContainer />
       <CalendarContainer />
       <PopupContainer />
     </>

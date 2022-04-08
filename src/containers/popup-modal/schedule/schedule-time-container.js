@@ -23,7 +23,7 @@ export const ScheduleTimeContainer = () => {
 
     return (
         <ScheduleTime>
-            {populateSchedule(9, 17, 30).map(time => {
+            {populateSchedule(8, 17, 30).map(time => {
                 return (
                 <TimestampContainer 
                     key={`${chosenDate.year}${chosenDate.month}${chosenDate.day}${time}`} 

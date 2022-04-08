@@ -14,7 +14,7 @@ export const InnerContainer = styled.button`
     text-align: left;
     padding: 0;
     margin: 2px 0;
-    background-color: #fff;
+    background-color: ${({chosen}) => chosen ? 'rgba(0, 255, 0, .2)' : '#fff'};
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);

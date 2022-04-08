@@ -15,7 +15,6 @@ export const Container = styled.div`
 export const InnerContainer = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
 
     min-height: 80vh;
@@ -26,11 +25,14 @@ export const InnerContainer = styled.div`
 
 export const InnerColumn = styled.div`
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: flex-start;
     
+    height: 100%;
     width: 50%;
+    padding: 40px;
 `;
 
-export const SectionTitle = styled.h2``
+export const SectionTitle = styled.h2`
+    text-align: center;
+`

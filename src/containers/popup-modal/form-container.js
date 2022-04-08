@@ -12,7 +12,7 @@ import {
 export const FormContainer = () => {
     const { chosenDate } = useContext(ChosenDateContext);
     const { chosenTime, setChosenTime } = useContext(ChosenTimeContext);
-    const { setScheduledAppointments } = useContext(ScheduledAppointmentsContext);
+    const { scheduledAppointments, setScheduledAppointments } = useContext(ScheduledAppointmentsContext);
 
     const [senderInfo, setSenderInfo] = useState({name: '', email: '', number: '', message: '' })
     const [disableSubmit, setDisableSubmit] = useState(true);
@@ -26,7 +26,7 @@ export const FormContainer = () => {
     const submitForm = (e) => {
         e.preventDefault();
         setAppointment({chosenTime, chosenDate, senderInfo}, setScheduledAppointments);
-        
+        console.log(scheduledAppointments)
         setTimeout(() => {
             setSenderInfo({name: '', email: '', number: '', message: '' });
             setChosenTime('');

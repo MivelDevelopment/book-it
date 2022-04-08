@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Dashboard } from '../../components';
+import { AppointmentListContainer } from './appointment-list/appointment-list-container';
 
 export const DashboardContainer = () => {
 
@@ -9,6 +10,7 @@ export const DashboardContainer = () => {
             <Dashboard.Inner>
                 <Dashboard.Column>
                     <Dashboard.Title>Your schedule</Dashboard.Title>
+                    <AppointmentListContainer />
                 </Dashboard.Column>
                 <Dashboard.Column>
                     <Dashboard.Title>Set your availability</Dashboard.Title>
