@@ -4,7 +4,9 @@ import { Dashboard } from '../../components';
 import { AppointmentListContainer } from './appointment-list/appointment-list-container';
 import { SingleAppointmentDetails } from './appointment-list/single-appointment-details';
 
+
 export const DashboardContainer = () => {
+
     const [openSchedule, setOpenSchedule] = useState(false);
     const [openAvailability, setOpenAvailability] = useState(false);
     const [leftClicked, setLeftClicked] = useState(false);
@@ -44,7 +46,10 @@ export const DashboardContainer = () => {
                         openSchedule={!openSchedule}
                     >
                         <Dashboard.Title>Appointment details</Dashboard.Title>
-                        <SingleAppointmentDetails booking={currentAppointmentShown}/>
+                        
+                        {currentAppointmentShown && 
+                            <SingleAppointmentDetails booking={currentAppointmentShown}/>
+                        }
                     </Dashboard.InnerContents>
                 </Dashboard.Column>
             </Dashboard.Inner>

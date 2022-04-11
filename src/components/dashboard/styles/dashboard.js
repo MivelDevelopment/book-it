@@ -26,7 +26,7 @@ export const InnerContainer = styled.div`
 export const InnerColumn = styled.div`
     display: block;
     
-    height: 100%;
+    height: 80vh;
     width: 45%;
     
     position: relative;
@@ -37,7 +37,8 @@ export const InnerContents = styled.div`
     flex-direction: column;
     background-color: #fff;
     
-    max-height: calc(80vh - 20px);
+    max-height: 80vh;
+    height: 100%;
     overflow: hidden;
     position: absolute;
 

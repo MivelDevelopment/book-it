@@ -14,7 +14,7 @@ export const FormContainer = () => {
     const { chosenTime, setChosenTime } = useContext(ChosenTimeContext);
     const { scheduledAppointments, setScheduledAppointments } = useContext(ScheduledAppointmentsContext);
 
-    const [senderInfo, setSenderInfo] = useState({name: '', email: '', number: '', message: '' })
+    const [senderInfo, setSenderInfo] = useState({fullName: '', email: '', number: '', message: '' })
     const [disableSubmit, setDisableSubmit] = useState(true);
 
     const handleChange = (e) => {
@@ -28,14 +28,14 @@ export const FormContainer = () => {
         setAppointment({chosenTime, chosenDate, senderInfo}, setScheduledAppointments);
         console.log(scheduledAppointments)
         setTimeout(() => {
-            setSenderInfo({name: '', email: '', number: '', message: '' });
+            setSenderInfo({fullName: '', email: '', number: '', message: '' });
             setChosenTime('');
         }, 0)
     }
 
     useEffect(() => {
-        setDisableSubmit(!chosenTime || !senderInfo.name || !senderInfo.email);
-    }, [chosenTime, senderInfo.name, senderInfo.email]);
+        setDisableSubmit(!chosenTime || !senderInfo.fullName || !senderInfo.email);
+    }, [chosenTime, senderInfo.fullName, senderInfo.email]);
 
     return (
         <InputForm onSubmit={submitForm}>
@@ -44,10 +44,10 @@ export const FormContainer = () => {
                 <InputForm.Label htmlFor="booker-name" >Your name</InputForm.Label>
                 <InputForm.Input 
                     id="booker-name" 
-                    name="name"
+                    name="fullName"
                     required 
                     type="text"
-                    value={senderInfo.name}
+                    value={senderInfo.fullName}
                     onChange={handleChange}
                 />
             </InputForm.InputContainer>
