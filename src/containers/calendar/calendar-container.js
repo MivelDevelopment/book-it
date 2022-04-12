@@ -22,11 +22,6 @@ const initialState = {
     thisMonth: true,
 }
 
-const setNumDays = payload => ({type: 'SET_NUM_DAYS_OF_MONTH', payload});
-const setFirstDayOfMonth = payload => ({type: 'SET_FIRST_DAY_OF_MONTH', payload});
-const setThisMonth = payload => ({type: 'SET_THIS_MONTH', payload});
-const setLastMonth = payload => ({type: 'SET_PAST_MONTH', payload});
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_MONTH':
@@ -92,10 +87,10 @@ export const CalendarContainer = () => {
     }
     
     useEffect(() => {
-        dispatch( setNumDays(getNumOfDaysInMonth(month, year)) );
-        dispatch( setFirstDayOfMonth(getFirstDayOfMonth(month, year)) );
-        dispatch( setThisMonth(year === todayYear && month === todayMonth) );
-        dispatch( setLastMonth((year === todayYear && month < todayMonth) || year < todayYear) );
+        dispatch({ type: 'SET_NUM_DAYS_OF_MONTH', payload: getNumOfDaysInMonth(month, year) });
+        dispatch({ type: 'SET_FIRST_DAY_OF_MONTH', payload: getFirstDayOfMonth(month, year) });
+        dispatch({ type: 'SET_THIS_MONTH', payload: year === todayYear && month === todayMonth });
+        dispatch({ type: 'SET_PAST_MONTH', payload: (year === todayYear && month < todayMonth) || year < todayYear });
         
         let prevAndCurrentMonth = numDays + firstDayOfMonth;
         let isGridFull = prevAndCurrentMonth % 7 === 0
