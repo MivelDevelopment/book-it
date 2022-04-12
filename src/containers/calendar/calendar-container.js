@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useReducer } from 'react';
+import React, { useEffect, useContext, useReducer } from 'react';
 
 import { Calendar, DayBox } from '../../components';
 import { CalendarHeadingContainer } from './calendar-heading-container';
@@ -17,9 +17,10 @@ const initialState = {
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
     firstDayOfMonth: 0,
-    numDays: 0,
+    numDays: 30,
     pastMonth: false,
     thisMonth: true,
+    arrayOfDaysInMonth: []
 }
 
 const reducer = (state, action) => {
@@ -29,31 +30,43 @@ const reducer = (state, action) => {
         ...state, 
         month: action.payload
       }
+
     case 'SET_YEAR':
       return {
         ...state, 
         year: action.payload
       }
+
     case 'SET_FIRST_DAY_OF_MONTH':
       return {
         ...state,
         firstDayOfMonth: action.payload
       }
+
     case 'SET_NUM_DAYS_OF_MONTH':
       return {
         ...state,
         numDays: action.payload
       }
+
     case 'SET_THIS_MONTH': 
       return {
         ...state,
         thisMonth: action.payload
       }
+
     case 'SET_PAST_MONTH':
       return {
         ...state,
         pastMonth: action.payload
       }
+
+    case 'SET_ARRAY_OF_DAYS_IN_MONTH':
+      return {
+        ...state, 
+        arrayOfDaysInMonth: action.payload
+      }
+
     default:
       return state;
   }
@@ -70,13 +83,11 @@ export const CalendarContainer = () => {
         firstDayOfMonth, 
         numDays, 
         pastMonth, 
-        thisMonth
+        thisMonth,
+        arrayOfDaysInMonth
     }, dispatch] = useReducer(reducer, initialState);
     
-    const [arrayOfDaysInMonth, setArrayOfDaysInMonth] = useState([]);
-
     const { today, todayMonth, todayYear } = getTodayDate();
-
 
     const handleClick = (day, index) => {
         setChosenDate({ day, month, year});
@@ -96,11 +107,12 @@ export const CalendarContainer = () => {
         let isGridFull = prevAndCurrentMonth % 7 === 0
         let spotsLeft = isGridFull ? 0 : 7 - (prevAndCurrentMonth % 7);
         
-        setArrayOfDaysInMonth([...Array(prevAndCurrentMonth + spotsLeft)].map((day, index) => {
-            if (firstDayOfMonth > index) return day = new Date(year, month, index + 1 - firstDayOfMonth).getDate()
-            if (!isGridFull && index + 1 > prevAndCurrentMonth) return day = new Date(year, month + 1, index - numDays - firstDayOfMonth + 1).getDate()
-            return day = index - firstDayOfMonth +1;
-        }));
+        dispatch({ type: 'SET_ARRAY_OF_DAYS_IN_MONTH', payload: 
+            [...Array(prevAndCurrentMonth + spotsLeft)].map((day, index) => {
+                if (firstDayOfMonth > index) return day = new Date(year, month, index + 1 - firstDayOfMonth).getDate();
+                if (!isGridFull && index + 1 > prevAndCurrentMonth) return day = new Date(year, month + 1, index - numDays - firstDayOfMonth + 1).getDate();
+                return day = index - firstDayOfMonth +1;
+            })})
 
     }, [numDays, firstDayOfMonth, month, year, todayYear, todayMonth])
 
