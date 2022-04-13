@@ -12,7 +12,7 @@ import {
 export const FormContainer = () => {
     const { chosenDate } = useContext(ChosenDateContext);
     const { chosenTime, setChosenTime } = useContext(ChosenTimeContext);
-    const { setScheduledAppointments } = useContext(ScheduledAppointmentsContext);
+    const { scheduledAppointments, setScheduledAppointments } = useContext(ScheduledAppointmentsContext);
 
     const [senderInfo, setSenderInfo] = useState({fullName: '', email: '', number: '', message: '' })
     const [disableSubmit, setDisableSubmit] = useState(true);
@@ -29,7 +29,7 @@ export const FormContainer = () => {
 
         setSenderInfo({fullName: '', email: '', number: '', message: '' });
         setChosenTime('');
-        
+        console.log(scheduledAppointments)
     }
 
     useEffect(() => {
