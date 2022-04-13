@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
     Container,
+    Mini,
     DateContent,
     MonthNameContent,
     YearContent
@@ -9,6 +10,10 @@ import {
 const Calendar = ({ children, ...restProps }) => {
     return <Container {...restProps}>{children}</Container>
 };
+
+Calendar.Mini = ({ children, ...restProps }) => {
+    return <Mini {...restProps}>{children}</Mini>
+}
 
 Calendar.TitleBox = ({ children, ...restProps }) => {
     return <DateContent {...restProps}>{children}</DateContent>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { AppointmentList } from '../../../components';
 import { AppointmentListItem } from './appointment-list-item';

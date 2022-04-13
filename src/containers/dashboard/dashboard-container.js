@@ -3,54 +3,62 @@ import React, { useState } from 'react';
 import { Dashboard } from '../../components';
 import { AppointmentListContainer } from './appointment-list/appointment-list-container';
 import { SingleAppointmentDetails } from './appointment-list/single-appointment-details';
+import { MiniCalendar } from './mini-calendar';
 
 
 export const DashboardContainer = () => {
 
-    const [openSchedule, setOpenSchedule] = useState(false);
     const [openAvailability, setOpenAvailability] = useState(false);
-    const [leftClicked, setLeftClicked] = useState(false);
+    const [currentDayShown, setCurrentDayShown] = useState('');
+    const [openSchedule, setOpenSchedule] = useState(false);
     const [currentAppointmentShown, setCurrentAppointmentShown] = useState('');
 
     return (
         <Dashboard>
             <Dashboard.Inner>
                 <Dashboard.Column>
-                <Dashboard.InnerContents 
-                    left 
-                    openSchedule={openSchedule} 
-                >
-                    <Dashboard.Title>Your schedule</Dashboard.Title>
-                    <AppointmentListContainer 
-                        openSchedule={openSchedule} 
-                        setOpenSchedule={setOpenSchedule} 
-                        currentAppointmentShown={currentAppointmentShown}
-                        setCurrentAppointmentShown={setCurrentAppointmentShown}
-                        onClick={() => setLeftClicked(true)}
-                    />
-                </Dashboard.InnerContents>
+                {!openAvailability ? (
+                    <Dashboard.InnerContents>
+                        <Dashboard.Title>Your schedule</Dashboard.Title>
+                        
+                        <AppointmentListContainer 
+                            openSchedule={openSchedule} 
+                            setOpenSchedule={setOpenSchedule} 
+                            currentAppointmentShown={currentAppointmentShown}
+                            setCurrentAppointmentShown={setCurrentAppointmentShown}
+                        />
+                    </Dashboard.InnerContents>) : (
+                    <Dashboard.InnerContents>
+                        <Dashboard.Title>Set time intervals for</Dashboard.Title>
+                        {console.log(currentDayShown)}
+                        <h3>{currentDayShown.day < 10 ? `0${currentDayShown.day}` : currentDayShown.day} / {currentDayShown.month + 1< 10 ? `0${currentDayShown.month + 1}` : currentDayShown.month + 1} / {currentDayShown.year}</h3>
+                    </Dashboard.InnerContents>
+                )}
+
                 </Dashboard.Column>
                 
                 <Dashboard.Column>
-                    <Dashboard.InnerContents 
-                        right 
-                        leftClicked 
-                        openSchedule={openSchedule}
-                    >
-                        <Dashboard.Title>Set your availability</Dashboard.Title>
-                    </Dashboard.InnerContents>
+                    { !openSchedule ? (
+                        <Dashboard.InnerContents>
+                            <Dashboard.Title>Set your availability</Dashboard.Title>
+
+                            <MiniCalendar 
+                                openAvailability={openAvailability} 
+                                setOpenAvailability={setOpenAvailability} 
+                                currentDayShown={currentDayShown}
+                                setCurrentDayShown={setCurrentDayShown}
+                            />
+
+                        </Dashboard.InnerContents>) : (
+                        <Dashboard.InnerContents>
+                            <Dashboard.Title>Appointment details</Dashboard.Title>
+                            
+                            {currentAppointmentShown && 
+                                <SingleAppointmentDetails booking={currentAppointmentShown}/>
+                            }
+                        </Dashboard.InnerContents>
+                    )}
                 
-                    <Dashboard.InnerContents 
-                        right 
-                        leftClicked 
-                        openSchedule={!openSchedule}
-                    >
-                        <Dashboard.Title>Appointment details</Dashboard.Title>
-                        
-                        {currentAppointmentShown && 
-                            <SingleAppointmentDetails booking={currentAppointmentShown}/>
-                        }
-                    </Dashboard.InnerContents>
                 </Dashboard.Column>
             </Dashboard.Inner>
         </Dashboard>

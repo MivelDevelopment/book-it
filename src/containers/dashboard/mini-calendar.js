@@ -2,16 +2,15 @@ import React, { useEffect, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 
 import { Calendar, DayBox } from '../../components';
-import { CalendarHeadingContainer } from './calendar-heading-container';
+import { CalendarHeadingContainer } from '../calendar/calendar-heading-container';
+import { DaysOfWeek } from '../calendar/days-of-week';
 import { getNumOfDaysInMonth } from '../../helpers/get-number-of-days-in-a-month';
 import { getFirstDayOfMonth } from '../../helpers/get-first-day-of-the-month';
 import { goToPreviousMonth } from '../../helpers/previous-month';
 import { goToNextMonth } from '../../helpers/next-month';
 import { getTodayDate } from '../../helpers/get-today-date';
 import { 
-    ChosenDateContext, 
-    PopupContext } from '../../context';
-import { DaysOfWeek } from './days-of-week';
+    ChosenDateContext} from '../../context';
 
 
 const initialState = {
@@ -60,9 +59,8 @@ const calendarReducer = (draft, action) => {
 }
 
 
-export const CalendarContainer = () => {   
+export const MiniCalendar = ({ openAvailability, setOpenAvailability, currentDayShown, setCurrentDayShown }) => {   
     const { setChosenDate } = useContext(ChosenDateContext);
-    const { setIsPopupOpen } = useContext(PopupContext);
 
     const [state, dispatch] = useImmerReducer(calendarReducer, initialState);
 
@@ -79,12 +77,23 @@ export const CalendarContainer = () => {
     const { today, todayMonth, todayYear } = getTodayDate();
 
     const handleClick = (day, index) => {
-        
-        setChosenDate({ day, month, year});
-        index < firstDayOfMonth ? goToPreviousMonth(dispatch, month, year)
-            : index > numDays + firstDayOfMonth - 1 ? goToNextMonth(dispatch, month, year) 
-            : pastMonth  || (thisMonth && day < today) ? setIsPopupOpen(false)
-            : setIsPopupOpen(true);
+      setChosenDate({ day, month, year});
+
+      let isBeforeFirstDayOfTheMonth = index < firstDayOfMonth;
+      let isAfterLastDayOfTheMonth = index > numDays + firstDayOfMonth - 1;
+      let isThisMonthButInPast = (thisMonth && day < today);
+
+      isBeforeFirstDayOfTheMonth ? goToPreviousMonth(dispatch, month, year)
+        : isAfterLastDayOfTheMonth && goToNextMonth(dispatch, month, year) 
+
+      if (day === currentDayShown.day) {
+        setOpenAvailability(false);
+        setCurrentDayShown({});
+      }
+      if (!isBeforeFirstDayOfTheMonth && !isAfterLastDayOfTheMonth && !pastMonth && !isThisMonthButInPast && day !== currentDayShown.day) {
+        setOpenAvailability(true);
+        setCurrentDayShown({ day, month, year });
+      }
     }
     
     useEffect(() => {
@@ -115,8 +124,8 @@ export const CalendarContainer = () => {
             dispatch={dispatch}
         />
 
-        <Calendar>
-            <DaysOfWeek />
+        <Calendar.Mini>
+            <DaysOfWeek isMini />
                 
             {arrayOfDaysInMonth.map((day, index) => (
             <DayBox 
@@ -126,6 +135,7 @@ export const CalendarContainer = () => {
                         || (thisMonth && day < today) }
             >
                 <DayBox.Date 
+                  isMini
                   onClick={() => handleClick(day, index)} 
                   month={index < firstDayOfMonth || index > numDays + firstDayOfMonth - 1 ? 'other' : 'curr'}
                 >
@@ -134,7 +144,7 @@ export const CalendarContainer = () => {
             </DayBox>
             ))}
             
-        </Calendar>
+        </Calendar.Mini>
         </>
     )
 }

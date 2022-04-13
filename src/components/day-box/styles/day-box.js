@@ -19,8 +19,10 @@ export const DateContent = styled.div`
     align-items: center;
     justify-content: center;
 
-    min-height: 100px;
-    width: 100px;
+    max-height: 100px;
+    height: ${({isMini}) => isMini ? '4vw' : '10vw'};
+    max-width: 100px;
+    width: 10vw;
     background-color: ${({ month }) => month === 'curr' ? 'lightblue' : 'rgba(33, 33, 33, .3)'};
     border: 1px solid black;
     border-radius: 10px;
@@ -28,5 +30,5 @@ export const DateContent = styled.div`
 `;
 
 export const DayContent = styled(DateContent)`
-    min-height: 50px;
+    max-height: ${({isMini}) => isMini ? '40px' : '50px'};
 `;

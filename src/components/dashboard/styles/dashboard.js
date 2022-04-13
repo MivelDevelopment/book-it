@@ -14,22 +14,33 @@ export const Container = styled.div`
 
 export const InnerContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
-
-    min-height: 80vh;
-    width: 80%;
+    align-items: center;
+    min-height: 30vh;
+    width: 90%;
 
     background-color: white;
+    @media (min-width: 991px) {
+        flex-direction: row;
+        min-height: 80vh;
+        width: 80%;
+    }
 `;
 
 export const InnerColumn = styled.div`
-    display: block;
-    
-    height: 80vh;
-    width: 45%;
-    
+    display: flex;
     position: relative;
+
+    height: 45vh;
+    width: 95%;
+
+    background-color: #fff;
+    
+    @media (min-width: 991px) {
+        height: 80vh;
+        width: 50%;
+    }
 `;
 
 export const InnerContents = styled.div`
@@ -37,20 +48,21 @@ export const InnerContents = styled.div`
     flex-direction: column;
     background-color: #fff;
     
-    max-height: 80vh;
+    max-height: 30vh;
     height: 100%;
     overflow: hidden;
     position: absolute;
 
-    top: 0; left: 0;
-    width: 100%;
+    top: 0; left: 5%;
+    width: 90%;
     padding: 40px 0;
 
-    z-index: ${({right, leftClicked}) => right && leftClicked ? '1' : right && !leftClicked && '2'};
-    z-index: ${({left, rightClicked}) => left && rightClicked ? '1' : left && !rightClicked && '2'};
-    left: ${({right, openSchedule}) => right && openSchedule && '-107%'};
-    
     transition: .4s;
+
+    @media (min-width: 991px) {
+        max-height: 80vh;
+        max-width: 90%;
+    }
 `;
 
 export const SectionTitle = styled.h2`

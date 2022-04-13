@@ -7,6 +7,7 @@ export const Overlay = styled.div`
     
     background-color: rgba(0, 0, 0, 0.2);
     transition: .3s ease-in-out;
+    z-index: 5;
 `;
 
 export const ContainerElement = styled.div`
