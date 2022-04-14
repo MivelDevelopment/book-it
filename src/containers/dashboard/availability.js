@@ -1,11 +1,16 @@
 import React from 'react';
 import { useImmerReducer } from 'use-immer';
-import { Availability } from '../../components';
+
+import { AvailabilityContainer } from './availability/availability-container';
+import { populateSchedule } from '../../helpers/populate-schedule-by-interval';
 
 const initialState = {
     startHour: 9,
     endHour: 17,
-    interval: 30
+    interval: 30,
+    errorMessage: '',
+    isErrorDisplayed: false,
+    isButtonDisabled: false
 }
 
 const reducer = (draft, action) => {
@@ -13,8 +18,23 @@ const reducer = (draft, action) => {
         case 'MANUAL_INPUT':
             draft[action.value] = action.payload;
             return;
-        case 'EQUAL_TIME':
-            draft.endHour = action.payload;
+        case 'INCREMENT':
+            draft[action.target] = action.payload + 1;
+            return;
+        case 'DECREMENT':
+            draft[action.target] = action.payload - 1;
+            return;
+        case 'DISPLAY_ERROR':
+            draft.errorMessage = action.payload;
+            draft.isErrorDisplayed = true;
+            return;
+        case 'RESET_ERROR':
+            draft.errorMessage = '';
+            draft.isErrorDisplayed = false;
+            draft.isButtonDisabled = false;
+            return;
+        case 'DISABLE_BUTTON':
+            draft.isButtonDisabled = true;
             return;
         default:
             return
@@ -23,52 +43,58 @@ const reducer = (draft, action) => {
 
 
 
-export const AvailabilityContainer = ({ currentDayShown }) => {
+export const Availability = () => {
     const [state, dispatch] = useImmerReducer(reducer, initialState);
 
     const handleChange = e => {
-        let value = e.target.value < 0 ? 0 : e.target.value > 24 ? 24 : e.target.value;
+        let value;
+        if (e.target.name !== 'interval') {
+            value = e.target.value < 0 ? 0 : e.target.value > 24 ? 24 : e.target.value;
+        }
+        if (e.target.name === 'interval') {
+            value = e.target.value <= 1 ? 1 : e.target.value > 999 ? 999 : e.target.value;
+        }
+        dispatch({type: 'MANUAL_INPUT', value: e.target.name, payload: Number(value)});
+        dispatch({type: 'RESET_ERROR'});
+    }
 
-        // Continue building this form
+    const increment = (target) => {
+        let value = state[target] >= 23 ? 23 : state[target];
+        dispatch({type: 'INCREMENT', target: target, payload: Number(value)});
 
-        // state.startHour >= state.endHour && dispatch({type: 'EQUAL_TIME', payload: state.startHour});
-        dispatch({type: 'MANUAL_INPUT', value: e.target.name, payload: value});
+        if (state.startHour >= state.endHour) {
+            let payload = state.startHour >= 23 ? 23 : state.startHour;
+            dispatch({ type: 'INCREMENT', target: 'endHour', payload: payload});
+        }
+        dispatch({type: 'RESET_ERROR'});
+    }
+
+    const decrement = (target) => {
+        let value = state[target] < 1 ? 1 : state[target];
+        dispatch({type: 'DECREMENT', target: target, payload: Number(value)});
+
+        if (state.startHour >= state.endHour) {
+            let payload = state.endHour <= 1 ? 1 : state.endHour;
+            dispatch({ type: 'DECREMENT', target: 'startHour', payload: payload});
+        }
+        dispatch({type: 'RESET_ERROR'});
+    }
+
+    const setScheduleInteval = () => {
+        const {startHour: start, endHour: end, interval} = state;
+        if (start === end) dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time and ending time cannot be the same! Did you want to set an individual appointment?'});
+        if (start > end) dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time cannot be set later than ending time'});
+        if (start > end || start === end) dispatch({type: 'DISABLE_BUTTON'})
+        console.log(populateSchedule(start, end, interval))
     }
 
     return (
-        <>
-            <Availability.Heading>
-            {currentDayShown.day < 10 ? `0${currentDayShown.day}` : currentDayShown.day} / {currentDayShown.month + 1< 10 ? `0${currentDayShown.month + 1}` : currentDayShown.month + 1} / {currentDayShown.year}
-            </Availability.Heading>
-            <Availability.Row>
-                <Availability.Column>
-                    <Availability.Button>+</Availability.Button>
-                    <Availability.Input 
-                        value={state.startHour} 
-                        name="startHour"
-                        type="number"
-                        onChange={handleChange} 
-                        min="0"
-                        max="24"
-                    />
-                    <Availability.Button>-</Availability.Button>
-                </Availability.Column>
-                <Availability.Column>
-                    <Availability.Button>+</Availability.Button>
-                    <Availability.Input 
-                        value={state.endHour} 
-                        name='endHour' 
-                        type="number"
-                        onChange={handleChange} 
-                        min="0"
-                        max="24"
-                    />
-                    <Availability.Button>-</Availability.Button>
-                </Availability.Column>
-            </Availability.Row>
-            <Availability.Row>
-                <Availability.Input />
-            </Availability.Row>
-        </>
+            <AvailabilityContainer 
+                state={state}
+                handleChange={handleChange}
+                increment={increment}
+                decrement={decrement}
+                setScheduleInteval={setScheduleInteval}
+            />
     )
 }

@@ -8,3 +8,4 @@ export { default as Dashboard } from './dashboard';
 export { default as AppointmentList } from './appointment-list';
 export { default as AppointmentInfo } from './appointment-info';
 export { default as Availability } from './availability';
+export { default as ErrorMsg } from './error-message';

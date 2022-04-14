@@ -6,7 +6,8 @@ import {
     Row,
     Column,
     Input,
-    Button
+    Button,
+    Interval
 } from './styles/availability';
 
 const Availability = ({ children, ...restProps }) => {
@@ -35,6 +36,10 @@ Availability.Input = ({ ...restProps }) => {
 
 Availability.Button = ({ children, ...restProps }) => {
     return <Button {...restProps}>{children}</Button>
+}
+
+Availability.Interval = ({ children, ...restProps }) => {
+    return <Interval {...restProps}>{children}</Interval>
 }
 
 export default Availability

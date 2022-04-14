@@ -5,7 +5,8 @@ import {
     InnerContainer,
     InnerColumn,
     InnerContents,
-    SectionTitle } from './styles/dashboard';
+    SectionTitle,
+    Subheading } from './styles/dashboard';
 
 const Dashboard = ({ children, ...restProps }) => {
     return <Container {...restProps}>{children}</Container>
@@ -25,6 +26,10 @@ Dashboard.InnerContents = ({ children, ...restProps }) => {
 
 Dashboard.Title = ({ children, ...restProps }) => {
     return <SectionTitle {...restProps}>{children}</SectionTitle>
+}
+
+Dashboard.Subheading = ({ children, ...restProps }) => {
+    return <Subheading {...restProps}>{children}</Subheading>
 }
 
 

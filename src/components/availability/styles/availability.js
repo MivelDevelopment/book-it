@@ -4,8 +4,8 @@ export const Container = styled.div``;
 
 export const Heading = styled.h3`
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 0;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 `;
 
 export const Info = styled.p`
@@ -13,10 +13,55 @@ export const Info = styled.p`
     padding-left: 2rem;
 `;
 
-export const Row = styled.div``;
+export const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+`;
 
-export const Column = styled.div``;
+export const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
-export const Input = styled.input``;
+    width: 100%;
+`;
 
-export const Button = styled.button``;
+export const Input = styled.input`
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    
+    width: 100%;
+    max-width: 80px;
+    
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
+`;
+
+export const Button = styled.button`
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 80px;
+`;
+
+export const Interval = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+
+    h3 {
+        margin: 1rem 0;
+        grid-column: 1 / -1;
+    }
+`;
+

@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Heading } from '../../availability/styles/availability';
 
 export const Container = styled.div`
     display: flex;
@@ -68,3 +69,5 @@ export const InnerContents = styled.div`
 export const SectionTitle = styled.h2`
     text-align: center;
 `
+
+export const Subheading = styled(Heading)``;
