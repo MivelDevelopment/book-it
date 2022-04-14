@@ -3,6 +3,7 @@ import { useImmerReducer } from 'use-immer';
 
 import { AvailabilityContainer } from './availability/availability-container';
 import { populateSchedule } from '../../helpers/populate-schedule-by-interval';
+import userSchedule from '../../utils/users.json';
 
 const initialState = {
     startHour: 9,
@@ -84,8 +85,20 @@ export const Availability = () => {
         const {startHour: start, endHour: end, interval} = state;
         if (start === end) dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time and ending time cannot be the same! Did you want to set an individual appointment?'});
         if (start > end) dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time cannot be set later than ending time'});
-        if (start > end || start === end) dispatch({type: 'DISABLE_BUTTON'})
-        console.log(populateSchedule(start, end, interval))
+        if (start > end || start === end) dispatch({type: 'DISABLE_BUTTON'});
+
+        console.log(populateSchedule(start, end, interval));
+    }
+
+    const postSchedule = async(url='', data={}) => {
+        const res = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        return res.json();
     }
 
     return (
