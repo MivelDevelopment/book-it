@@ -66,8 +66,4 @@ export const InnerContents = styled.div`
     }
 `;
 
-export const SectionTitle = styled.h2`
-    text-align: center;
-`
-
 export const Subheading = styled(Heading)``;

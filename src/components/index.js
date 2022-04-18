@@ -9,3 +9,5 @@ export { default as AppointmentList } from './appointment-list';
 export { default as AppointmentInfo } from './appointment-info';
 export { default as Availability } from './availability';
 export { default as ErrorMsg } from './error-message';
+export { default as PageContainer } from './page-container';
+export { default as Column } from './page-column';
