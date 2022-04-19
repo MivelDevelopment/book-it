@@ -20,10 +20,18 @@ On the other hand, there isn't much wiggle room to make a calendar.
 
 #### Dashboard
 
-For development purposes user dashboard is shown on top of calendar.  
+For development purposes user dashboard is shown on above the calendar.  
 When you make an appointment, it will be shown on the left-hand side of dashboard.  
 Appointments are sorted in order from soonest to latest scheduled.  
 When you click on the appointment, right side switches to show selected appointment's info.  
+When you click on the same appointment again, right side switches to previous display.  
+On the right-hand side of dashboard is mini-calendar.  
+When you click on a date, left-hand side switches to show that date.  
+On the left-hand side of dashboard is schedule machine.  
+You should provide starting time (hours), ending time (hours), and interval in minutes.  
+After you click the Set button, schedule is populated using the parameters you provided.  
+Schedule is currently logged to the console.  
+When you click on a mini-calendar date, user's (with the id=1) schedule gets fetched and logged to the console.  
 
 ##### Calendar
 
@@ -41,6 +49,9 @@ I will update this section daily
 This app is made in React using functional components. 
 For state management I am using React's Context API.  
 Components are built using styled-components.  
+Using json-server for storing data.  
+Using Axios for data fetching.  
+For link routing I'm using React Router 6.
 
 This section will be updated when needed.
 

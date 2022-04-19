@@ -1,9 +1,9 @@
 import React from 'react';
 import { Column, PageContainer } from '../components';
-import { SignInContainer } from '../containers/login/sign-in-container';
+import { LoginContainer } from '../containers/login/login-container';
 
 export const LoginPage = () => {
-    
+
     return (
     <PageContainer>
         
@@ -11,7 +11,7 @@ export const LoginPage = () => {
         <PageContainer.Title>State your intentions</PageContainer.Title>
             <Column>
             <h2>Create a schedule</h2>
-            <SignInContainer />
+            <LoginContainer />
             </Column>
             <Column>
             <h2>Book an appointment</h2>
