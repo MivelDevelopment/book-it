@@ -22,7 +22,7 @@ export const DashboardContainer = () => {
                 <Dashboard.Column>
                 {!openAvailability ? (
                     <Dashboard.InnerContents>
-                        <Dashboard.Title>Your schedule</Dashboard.Title>
+                        <h2>Your schedule</h2>
                         
                         <AppointmentListContainer 
                             openSchedule={openSchedule} 
@@ -39,7 +39,7 @@ export const DashboardContainer = () => {
                 <Dashboard.Column>
                     { !openSchedule ? (
                         <Dashboard.InnerContents>
-                            <Dashboard.Title>Set your availability</Dashboard.Title>
+                            <h2>Set your availability</h2>
 
                             <MiniCalendar 
                                 openAvailability={openAvailability} 
@@ -50,7 +50,7 @@ export const DashboardContainer = () => {
 
                         </Dashboard.InnerContents>) : (
                         <Dashboard.InnerContents>
-                            <Dashboard.Title>Appointment details</Dashboard.Title>
+                            <h2>Appointment details</h2>
                             
                             {currentAppointmentShown && 
                                 <SingleAppointmentDetails booking={currentAppointmentShown}/>

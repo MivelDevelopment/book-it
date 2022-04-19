@@ -120,15 +120,15 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
 
 
     /**
+     * TODO
      * Continue with fetching of the data and make it
      * display on left-hand side of the dashboard
-     * 
      */
 
 
     const fetchData = async() => {
       try {
-        const response = await axios.get('http://localhost:3000/users/1');
+        const response = await axios.get('http://localhost:3333/users/1');
         const {availability} = await response.data;
         const thisDayBookings = await availability.find(booking => booking.day === currentDayShown.day);
         console.log(thisDayBookings.time.map(availableTime => availableTime));
