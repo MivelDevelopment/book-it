@@ -1,7 +1,3 @@
-## UPDATE  
-
-As of 20.04.2022. uploads to this repo will be discontinued. This application is moved to https://github.com/milosveljkovic1992/book-it/ where it will be continued using api (backend for user auth) and client (frontend, migrated from here).
-
 # Booking app
 
 This project is in progress. Stay tuned.
