@@ -1,0 +1,100 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "John Doe",
+      "userName": "Mr. John",
+      "email": "johndoe@gmail.com",
+      "availability": [
+        {
+          "day": 20,
+          "month": 4,
+          "year": 2022,
+          "time": [
+            "8:00",
+            "9:00",
+            "10:00"
+          ]
+        },
+        {
+          "day": 21,
+          "month": 4,
+          "year": 2022,
+          "time": [
+            "8:00",
+            "9:00",
+            "10:00"
+          ]
+        },
+        {
+          "day": 22,
+          "month": 4,
+          "year": 2022,
+          "time": [
+            "8:00",
+            "9:00",
+            "10:00",
+            "10:30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "fullName": "Jane Doe",
+      "userName": "Jadoe",
+      "email": "janedoe@gmail.com",
+      "availability": [
+        {
+          "day": 25,
+          "month": 4,
+          "year": 2022,
+          "time": [
+            "8:00",
+            "9:00",
+            "10:00"
+          ]
+        },
+        {
+          "day": 26,
+          "month": 4,
+          "year": 2022,
+          "time": [
+            "8:00",
+            "9:00",
+            "10:00"
+          ]
+        },
+        {
+          "day": 27,
+          "month": 4,
+          "year": 2022,
+          "time": [
+            "8:00",
+            "9:00",
+            "10:00",
+            "10:30"
+          ]
+        }
+      ]
+    },
+    {
+      "fullName": "Jenna Lenie",
+      "userName": "Jenny5",
+      "email": "jl@gmail.com",
+      "occupation": "singer",
+      "phoneNumber": "",
+      "id": 3,
+      "availability": []
+    },
+    {
+      "fullName": "George Lu",
+      "userName": "Luger88",
+      "email": "luger88@gmail.com",
+      "occupation": "actor",
+      "phoneNumber": "5584",
+      "id": 4,
+      "availability": []
+    }
+  ]
+}
