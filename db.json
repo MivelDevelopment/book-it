@@ -3,8 +3,8 @@
     {
       "id": 1,
       "fullName": "John Doe",
+      "userName": "Mr. John",
       "email": "johndoe@gmail.com",
-      "phoneNumber": "342523",
       "availability": [
         {
           "day": 20,
@@ -42,8 +42,8 @@
     {
       "id": 2,
       "fullName": "Jane Doe",
+      "userName": "Jadoe",
       "email": "janedoe@gmail.com",
-      "phoneNumber": "123223",
       "availability": [
         {
           "day": 25,
@@ -80,31 +80,21 @@
     },
     {
       "fullName": "Jenna Lenie",
+      "userName": "Jenny5",
       "email": "jl@gmail.com",
-      "phoneNumber": "1235423",
+      "occupation": "singer",
+      "phoneNumber": "",
       "id": 3,
       "availability": []
     },
     {
       "fullName": "George Lu",
+      "userName": "Luger88",
       "email": "luger88@gmail.com",
+      "occupation": "actor",
       "phoneNumber": "5584",
       "id": 4,
       "availability": []
-    },
-    {
-      "fullName": "Johnny Bravo",
-      "email": "ebjbs@gmail.com",
-      "phoneNumber": "12312",
-      "availability": [],
-      "id": 5
-    },
-    {
-      "fullName": "Loretta House",
-      "email": "loandbeho@gmail.com",
-      "phoneNumber": "8524685",
-      "availability": [],
-      "id": 6
     }
   ]
 }
