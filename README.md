@@ -51,7 +51,9 @@ For state management I am using React's Context API.
 Components are built using styled-components.  
 Using json-server for storing data.  
 Using Axios for data fetching.  
-For link routing I'm using React Router 6.
+For link routing I'm using React Router 6.  
+Using Firebase for realtime database management.  
+Using Firebase for user authentication.  
 
 This section will be updated when needed.
 
