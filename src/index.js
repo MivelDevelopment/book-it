@@ -5,27 +5,32 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 
-import { ChosenDateContextProvider,
+import {
+  ChosenDateContextProvider,
   PopupContextProvider,
   ChosenTimeContextProvider,
   ScheduledAppointmentsContextProvider,
-  AvailableSchedulesContextProvider } from './context';
+  AvailableSchedulesContextProvider
+} from './context';
+import { AuthContextProvider } from './context/auth-context';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <PopupContextProvider>
-      <ChosenDateContextProvider>
-      <ChosenTimeContextProvider>
-      <ScheduledAppointmentsContextProvider>
-      <AvailableSchedulesContextProvider>
-        <App />
-      </AvailableSchedulesContextProvider>
-      </ScheduledAppointmentsContextProvider>
-      </ChosenTimeContextProvider>
-      </ChosenDateContextProvider>
-      </PopupContextProvider>
+      <AuthContextProvider>
+        <PopupContextProvider>
+          <ChosenDateContextProvider>
+            <ChosenTimeContextProvider>
+              <ScheduledAppointmentsContextProvider>
+                <AvailableSchedulesContextProvider>
+                  <App />
+                </AvailableSchedulesContextProvider>
+              </ScheduledAppointmentsContextProvider>
+            </ChosenTimeContextProvider>
+          </ChosenDateContextProvider>
+        </PopupContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

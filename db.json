@@ -3,7 +3,6 @@
     {
       "id": 1,
       "fullName": "John Doe",
-      "userName": "Mr. John",
       "email": "johndoe@gmail.com",
       "availability": [
         {
@@ -42,7 +41,6 @@
     {
       "id": 2,
       "fullName": "Jane Doe",
-      "userName": "Jadoe",
       "email": "janedoe@gmail.com",
       "availability": [
         {
@@ -80,21 +78,39 @@
     },
     {
       "fullName": "Jenna Lenie",
-      "userName": "Jenny5",
       "email": "jl@gmail.com",
-      "occupation": "singer",
       "phoneNumber": "",
       "id": 3,
       "availability": []
     },
     {
       "fullName": "George Lu",
-      "userName": "Luger88",
       "email": "luger88@gmail.com",
-      "occupation": "actor",
       "phoneNumber": "5584",
       "id": 4,
       "availability": []
+    },
+    {
+      "fullName": "123",
+      "email": "123@123",
+      "phoneNumber": "123",
+      "availability": [],
+      "id": 5
+    },
+    {
+      "fullName": "123",
+      "email": "223@323",
+      "phoneNumber": "423",
+      "availability": [],
+      "id": 6
+    },
+    {
+      "fullName": "123",
+      "email": "123@432234",
+      "password": "123@123",
+      "phoneNumber": "123",
+      "availability": [],
+      "id": 7
     }
   ]
 }

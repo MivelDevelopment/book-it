@@ -31,7 +31,7 @@ On the left-hand side of dashboard is schedule machine.
 You should provide starting time (hours), ending time (hours), and interval in minutes.  
 After you click the Set button, schedule is populated using the parameters you provided.  
 Schedule is currently logged to the console.  
-When you click on a mini-calendar date, user's (with the id=1) schedule gets fetched and logged to the console.  
+When you click on a mini-calendar date, user's (with the id=1) schedule gets fetched and logged to the console.
 
 ##### Calendar
 
@@ -46,14 +46,14 @@ I will update this section daily
 
 ## Technology
 
-This app is made in React using functional components. 
+This app is made in React using functional components.
 For state management I am using React's Context API.  
 Components are built using styled-components.  
 Using json-server for storing data.  
 Using Axios for data fetching.  
 For link routing I'm using React Router 6.  
 Using Firebase for realtime database management.  
-Using Firebase for user authentication.  
+Using Firebase for user authentication.
 
 This section will be updated when needed.
 
@@ -61,12 +61,11 @@ This section will be updated when needed.
 
 Book It app is my personal project. You are free to use some/none of the code presented here as you see fit, without any legal consequences, but you can't use this project in it's entirety and present it as your own.
 
-
 ## Reach out
 
 I have imagined this being a solo project, but if you want to colab, that could be fun too.  
-That being said, don't hesitate to reach out.  
+That being said, don't hesitate to reach out.
 
 #### Changelog
 
-Added user dashboard container 
+Added user dashboard container
