@@ -10,9 +10,9 @@ import {
   PopupContextProvider,
   ChosenTimeContextProvider,
   ScheduledAppointmentsContextProvider,
-  AvailableSchedulesContextProvider
+  AvailableSchedulesContextProvider,
+  AuthContextProvider
 } from './context';
-import { AuthContextProvider } from './context/auth-context';
 
 
 ReactDOM.render(

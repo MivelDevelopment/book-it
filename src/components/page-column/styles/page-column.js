@@ -5,5 +5,5 @@ export const InnerColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 `;

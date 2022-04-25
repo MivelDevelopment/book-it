@@ -9,14 +9,16 @@ export const Container = styled.section`
     min-height: 100vh;
     width: 100%;
 
-    background-color: rgba(0, 0, 0, .1)
+    background-color: #7253d5;
+    
 `;
 
 export const InnerContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill,  minmax(445px, 1fr));
-    place-items: center;
-    min-height: 30vh;
+    grid-template-rows: 150px 1fr;
+    place-items: top;
+    min-height: 80vh;
     width: 90%;
 
     background-color: white;
@@ -28,7 +30,6 @@ export const InnerContainer = styled.div`
     /*
     @media (min-width: 991px) {
         grid-template-columns: repeat(2, minmax(400px, 1fr));
-        flex-direction: row;
         min-height: 80vh;
         width: 80%;
     }
