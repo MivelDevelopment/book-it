@@ -1,72 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
-
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { db } from '../../firebase-config';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import React from 'react';
 
 import { Form } from '../../components';
-import { setNewUser } from '../../helpers/set-new-user';
-import { AuthContext } from '../../context';
 
-const initialState = {
-    fullName: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-};
+export const SignupForm = ({ handleSubmit, senderInfo, handleChange, password, setPassword }) => {
 
-// Divide database on user and another for appointments for that user
-
-export const SignupForm = () => {
-    const { setIsAuth } = useContext(AuthContext);
-    const [senderInfo, setSenderInfo] = useState({ ...initialState });
-    const [users, setUsers] = useState([]);
-
-    const usersCollectionRef = collection(db, 'users');
-    const createUser = async () => {
-        await addDoc(usersCollectionRef, senderInfo);
-    };
-
-    const auth = getAuth();
-
-    useEffect(() => {
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef);
-            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
-        getUsers();
-    }, [])
-
-    console.log(users);
-    const handleChange = (e) => {
-        let info = { ...senderInfo };
-        info[e.target.name] = e.target.value;
-        setSenderInfo(info);
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        setNewUser(senderInfo);
-        // createUserWithEmailAndPassword(auth, senderInfo.email, senderInfo.password)
-        //     .then((userCredential) => {
-        //         const user = userCredential.user;
-        //         console.log(userCredential);
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //     });
-        createUser(senderInfo);
-        setSenderInfo(initialState);
-        setIsAuth(true);
-        localStorage.setItem('isAuth', senderInfo.email);
-    };
-
-    useEffect(() => {
-        console.log(users);
-    }, [users]);
-
-    console.log(users)
     return (
         <>
             <Form.Title>Sign up</Form.Title>
@@ -104,8 +41,8 @@ export const SignupForm = () => {
                         required
                         type="password"
                         autoComplete="off"
-                        value={senderInfo.password}
-                        onChange={handleChange}
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </Form.InputContainer>
 

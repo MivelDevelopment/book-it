@@ -1,17 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../context';
+import React from 'react';
 import { Form } from '../../components';
 
-export const LoginForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const { setIsAuth } = useContext(AuthContext);
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        setIsAuth(true);
-    };
+export const LoginForm = ({ email, setEmail, password, setPassword, handleSubmit }) => {
 
     return (
         <>

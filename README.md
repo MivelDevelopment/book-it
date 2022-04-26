@@ -18,6 +18,12 @@ On the other hand, there isn't much wiggle room to make a calendar.
 
 ### Features
 
+#### Login
+
+When you first load this app and you're not authenticated, the login screen appears.  
+You can choose to signup or to login.  
+After successfully doing so, you are granted access to the rest of the app.  
+
 #### Dashboard
 
 For development purposes user dashboard is shown on above the calendar.  
@@ -49,7 +55,6 @@ I will update this section daily
 This app is made in React using functional components.
 For state management I am using React's Context API.  
 Components are built using styled-components.  
-Using json-server for storing data.  
 Using Axios for data fetching.  
 For link routing I'm using React Router 6.  
 Using Firebase for realtime database management.  
