@@ -14,6 +14,7 @@ import {
   AuthContextProvider
 } from './context';
 
+localStorage.removeItem('isAuth');
 
 ReactDOM.render(
   <React.StrictMode>

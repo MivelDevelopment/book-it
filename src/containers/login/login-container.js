@@ -19,6 +19,8 @@ export const LoginContainer = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setIsAuth(true);
+                console.log(user);
+                localStorage.setItem('isAuth', email);
             })
             .catch((error) => {
                 console.log(error.code);

@@ -20,7 +20,8 @@ On the other hand, there isn't much wiggle room to make a calendar.
 
 #### Login
 
-When you first load this app and you're not authenticated, the login screen appears.  
+When you first load the app, user is cleared from localStorage.  
+Because you're not authenticated, the login screen appears.  
 You can choose to signup or to login.  
 After successfully doing so, you are granted access to the rest of the app.  
 

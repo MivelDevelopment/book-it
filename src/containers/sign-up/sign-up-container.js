@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from '../../firebase-config';
@@ -34,15 +34,16 @@ export const SignupContainer = () => {
         setSenderInfo(info);
     }
 
-    useEffect(() => {
-        console.log(senderInfo);
-    }, [])
-
     const handleSubmit = e => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, senderInfo.email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                user.displayName = senderInfo.fullName;
+                user.phoneNumber = senderInfo.phoneNumber ? senderInfo.phoneNumber : null;
+                setIsAuth(true);
+                console.log(user);
+                localStorage.setItem('isAuth', senderInfo.email);
             })
             .catch((error) => {
                 console.log(error.code);
@@ -52,8 +53,6 @@ export const SignupContainer = () => {
         createUser(senderInfo);
         setSenderInfo(initialState);
         setPassword('');
-        setIsAuth(true);
-        localStorage.setItem('isAuth', senderInfo.email);
     };
 
     return (
