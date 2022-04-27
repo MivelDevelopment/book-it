@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { CalendarContainer } from './containers/calendar/calendar-container';
 import { PopupContainer } from './containers/popup-modal/popup-container';
@@ -16,10 +16,10 @@ const App = () => {
   }
   return (
     <>
-      <LoginPage />
       <Routes>
-        <Route path="/dashboard" element={<DashboardContainer />} />
+        <Route path="/*" element={<DashboardContainer />} />
       </Routes>
+      {/* <DashboardContainer /> */}
       <CalendarContainer />
       <PopupContainer />
     </>

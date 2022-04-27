@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from '../../firebase-config';
@@ -14,7 +14,6 @@ const initialState = {
     phoneNumber: ''
 };
 
-// Divide database on user and another for appointments for that user
 
 export const SignupContainer = () => {
     const { setIsAuth } = useContext(AuthContext);
@@ -22,11 +21,12 @@ export const SignupContainer = () => {
     const [password, setPassword] = useState('');
     
     const usersCollectionRef = collection(db, 'users');
+    const auth = getAuth();
+    
+
     const createUser = async () => {
         await addDoc(usersCollectionRef, senderInfo);
     };
-
-    const auth = getAuth();
 
     const handleChange = (e) => {
         let info = { ...senderInfo };

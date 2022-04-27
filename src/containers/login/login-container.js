@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context';
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -10,6 +11,7 @@ const auth = getAuth();
 export const LoginContainer = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const { setIsAuth } = useContext(AuthContext);
 
@@ -21,6 +23,7 @@ export const LoginContainer = () => {
                 setIsAuth(true);
                 console.log(user);
                 localStorage.setItem('isAuth', email);
+                navigate('/');
             })
             .catch((error) => {
                 console.log(error.code);
