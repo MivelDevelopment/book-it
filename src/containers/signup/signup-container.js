@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from '../../firebase-config';
-import { collection, addDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 
 import { SignupForm } from './signup-form';
 import { AuthContext } from '../../context';
@@ -20,12 +20,12 @@ export const SignupContainer = () => {
     const [senderInfo, setSenderInfo] = useState({ ...initialState });
     const [password, setPassword] = useState('');
     
-    const usersCollectionRef = collection(db, 'users');
     const auth = getAuth();
     
 
     const createUser = async () => {
-        await addDoc(usersCollectionRef, senderInfo);
+        const usersCollectionRef = doc(db, 'users', senderInfo.email);
+        await setDoc(usersCollectionRef, senderInfo);
     };
 
     const handleChange = (e) => {
@@ -48,7 +48,6 @@ export const SignupContainer = () => {
             .catch((error) => {
                 console.log(error.code);
                 console.log(error.message);
-                // ..
             });
         createUser(senderInfo);
         setSenderInfo(initialState);
