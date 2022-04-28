@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column, PageContainer } from '../components';
 import { LoginContainer } from '../containers/login/login-container';
-import { SignupContainer } from '../containers/sign-up/sign-up-container';
+import { SignupContainer } from '../containers/signup/signup-container';
 import { Routes, Route } from 'react-router-dom';
 
 export const LoginPage = () => {

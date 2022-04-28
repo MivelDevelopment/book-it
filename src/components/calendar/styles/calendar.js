@@ -19,14 +19,11 @@ export const Container = styled.div`
 `;
 
 export const Mini = styled(Container)`
-    grid-template-columns: repeat(7, minmax(40px, 1fr));
-    grid-template-rows: 50px repeat(auto-fill, minmax(5vw, 1fr));
+    grid-template-columns: repeat(7, 40px);
+    grid-template-rows: 50px repeat(auto-fill, 40px);
 
-    @media (min-width: 1000px) {
-        grid-template-rows: 40px repeat(auto-fill, minmax(4vw, 1fr));
-    }
     @media (min-width: 991px) {
-        grid-template-rows: 40px repeat(auto-fill, minmax(4vw, 1fr));
+        grid-template-rows: 40px repeat(auto-fill, 40px);
     }
 `;
 
