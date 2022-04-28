@@ -1,0 +1,255 @@
+export const schedule = {
+      "johndoe@gmail.com": {
+        
+        "2022": {
+          "4": {
+            "11": [
+              {
+                "id": "202204111100",
+                "time": "11:00",
+                "status": "available"
+              },
+              {
+                "id": "202204111200",
+                "time": "12:00",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "1"
+                }
+              },
+              {
+                "id": "202204111300",
+                "time": "13:00",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "2"
+                }
+              },
+              {
+                "id": "202204111400",
+                "time": "14:00",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "3"
+                }
+              },
+              {
+                "id": "202204111500",
+                "time": "15:00",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "4"
+                }
+              },
+              {
+                "id": "202204111600",
+                "time": "16:00",
+                "status": "available"
+              },
+              {
+                "id": "202204111700",
+                "time": "17:00",
+                "status": "available"
+              }
+            ],
+            "12": [
+              {
+                "id":"202204121120",
+                "time": "11:20",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "5"
+                }
+              },
+              {
+                "id":"202204121140",
+                "time": "11:40",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "6"
+                }
+              },
+              {
+                "id":"202204121200",
+                "time": "12:00",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "7"
+                }
+              },
+              {
+                "id":"202204121220",
+                "time": "12:20",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "8"
+                }
+              },
+              {
+                "id":"202204121240",
+                "time": "12:40",
+                "status": "available"
+              },
+              {
+                "id":"202204121300",
+                "time": "13:00",
+                "status": "available"
+              },
+              {
+                "id":"202204121400",
+                "time": "14:00",
+                "status": "available"
+              }
+            ]
+          },
+          "5": {
+            "22": [
+              {
+                "id":"202205220900",
+                "time": "09:00",
+                "status": "available"
+              },
+              {
+                "id":"202205220930",
+                "time": "09:30",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "9"
+                }
+              },
+              {
+                "id":"202205221000",
+                "time": "10:00",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "10"
+                }
+              },
+              {
+                "id":"202205221030",
+                "time": "10:30",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "11"
+                }
+              },
+              {
+                "id":"202205221100",
+                "time": "11:00",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "12"
+                }
+              },
+              {
+                "id":"202205221130",
+                "time": "11:30",
+                "status": "available"
+              },
+              {
+                "id":"202205221200",
+                "time": "12:00",
+                "status": "available"
+              }
+            ],
+            "24": [
+              {
+                "id":"202205241230",
+                "time": "12:30",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "13"
+                }
+              },
+              {
+                "id":"202205241245",
+                "time": "12:45",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "14"
+                }
+              },
+              {
+                "id":"202205241300",
+                "time": "13:00",
+                "status": "pending",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "15"
+                }
+              },
+              {
+                "id":"202205241315",
+                "time": "13:15",
+                "status": "approved",
+                "scheduler": {
+                  "fullname": "Jannet Doe",
+                  "email": "jnt@doe.com",
+                  "message": "I'd like to schedule an interview",
+                  "number": "16"
+                }
+              },
+              {
+                "id":"202205241330",
+                "time": "13:30",
+                "status": "available"
+              },
+              {
+                "id":"202205241345",
+                "time": "13:45",
+                "status": "available"
+              },
+              {
+                "id":"202205241400",
+                "time": "14:00",
+                "status": "available"
+              }
+            ]
+          }
+        }
+      }
+    }
