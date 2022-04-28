@@ -1,26 +1,25 @@
-import axios from 'axios';
+import { getScheduleFromFirebase } from './get-schedule-from-firebase';
 
-export const fetchAppointmentsByDate = async(userEmail, {day, month, year}) => {
-    localStorage.setItem('isAuth', 'johndoe@gmail.com');
-    
+export const fetchAppointmentsByDate = async (userEmail) => {
+    localStorage.setItem('isAuth', 'jdp@gmail.com');
+
     if (localStorage.getItem('isAuth') !== userEmail) {
         localStorage.removeItem('isAuth');
-        throw `There's been a authentication missmatch, please log in again`;
+        alert(`There's been a authentication missmatch, you need to log in again`);
+        window.location.href = './login';
+        return;
     }
-    
+
     try {
-        const response = await axios.get(`http://localhost:3333/schedule/`);
-        const data = await response.data;
-        if (data[userEmail][year][month][day] ) {
-            console.log(data?.[userEmail]?.[year]?.[month]?.[day]);
-            return data?.[userEmail]?.[year]?.[month]?.[day];
+        const data = await getScheduleFromFirebase(userEmail);
+
+        if (data) {
+            return data;
         } else {
-            console.log('No appointments made for this date.');
             return []
         };
-        
     } catch (error) {
-        console.log(error.response);
+        console.log(error);
     }
-    
+
 }

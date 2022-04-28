@@ -3,7 +3,7 @@ import React, { useState, createContext } from 'react';
 const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
-    const [signedInUser, setSignedInUser] = useState('johndoe@gmail.com');
+    const [signedInUser, setSignedInUser] = useState('jdp@gmail.com');
 
     return (
         <UserContext.Provider value={{ signedInUser, setSignedInUser }}>
