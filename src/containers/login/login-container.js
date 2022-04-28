@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context';
+import { AuthContext, UserContext } from '../../context';
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { db } from '../../firebase-config';
@@ -9,6 +9,8 @@ import { LoginForm } from './login-form';
 const auth = getAuth();
 
 export const LoginContainer = () => {
+    const { setSignedInUser } = useContext(UserContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ export const LoginContainer = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setIsAuth(true);
+                setSignedInUser(email);
                 localStorage.setItem('isAuth', email);
                 navigate('/');
             })

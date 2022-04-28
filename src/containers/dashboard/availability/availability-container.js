@@ -54,8 +54,9 @@ export const AvailabilityContainer = () => {
             value = e.target.value < 0 ? 0 : e.target.value > 24 ? 24 : e.target.value;
         }
         if (e.target.name === 'interval') {
-            value = e.target.value <= 1 ? 1 : e.target.value > 999 ? 999 : e.target.value;
+            value = e.target.value <= 1 ? 1 : e.target.value > 900 ? 900 : e.target.value;
         }
+
         dispatch({type: 'MANUAL_INPUT', value: e.target.name, payload: Number(value)});
         dispatch({type: 'RESET_ERROR'});
     }
@@ -68,6 +69,7 @@ export const AvailabilityContainer = () => {
             let payload = state.startHour >= 23 ? 23 : state.startHour;
             dispatch({ type: 'INCREMENT', target: 'endHour', payload: payload});
         }
+        
         dispatch({type: 'RESET_ERROR'});
     }
 
@@ -79,16 +81,21 @@ export const AvailabilityContainer = () => {
             let payload = state.endHour <= 1 ? 1 : state.endHour;
             dispatch({ type: 'DECREMENT', target: 'startHour', payload: payload});
         }
+        
         dispatch({type: 'RESET_ERROR'});
     }
 
     const setScheduleInteval = () => {
         const {startHour: start, endHour: end, interval} = state;
-        if (start === end) dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time and ending time cannot be the same! Did you want to set an individual appointment?'});
-        if (start > end) dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time cannot be set later than ending time'});
-        if (start > end || start === end) dispatch({type: 'DISABLE_BUTTON'});
-
-        console.log(populateSchedule(start, end, interval));
+        if (start === end) {
+            dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time and ending time cannot be the same! Did you want to set an individual appointment?'});
+        } else if (start > end) {
+            dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time cannot be set later than ending time'});
+        } else if (start > end || start === end) {
+            dispatch({type: 'DISABLE_BUTTON'});
+        } else {
+            console.log(populateSchedule(start, end, interval));
+        }        
     }
 
 

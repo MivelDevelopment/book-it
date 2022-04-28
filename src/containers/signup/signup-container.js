@@ -5,7 +5,7 @@ import { db } from '../../firebase-config';
 import { doc, setDoc } from 'firebase/firestore';
 
 import { SignupForm } from './signup-form';
-import { AuthContext } from '../../context';
+import { AuthContext, UserContext } from '../../context';
 
 
 const initialState = {
@@ -17,6 +17,8 @@ const initialState = {
 
 export const SignupContainer = () => {
     const { setIsAuth } = useContext(AuthContext);
+    const { setSignedInUser } = useContext(UserContext);
+
     const [senderInfo, setSenderInfo] = useState({ ...initialState });
     const [password, setPassword] = useState('');
     
@@ -42,6 +44,7 @@ export const SignupContainer = () => {
                 user.displayName = senderInfo.fullName;
                 user.phoneNumber = senderInfo.phoneNumber ? senderInfo.phoneNumber : null;
                 setIsAuth(true);
+                setSignedInUser(senderInfo.email);
                 console.log(user);
                 localStorage.setItem('isAuth', senderInfo.email);
             })

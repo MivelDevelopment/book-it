@@ -10,8 +10,8 @@ import { goToPreviousMonth } from '../../helpers/previous-month';
 import { goToNextMonth } from '../../helpers/next-month';
 import { getTodayDate } from '../../helpers/get-today-date';
 import { 
-    ChosenDateContext} from '../../context';
-import axios from 'axios';
+    ChosenDateContext, UserContext} from '../../context';
+import { fetchAppointmentsByDate } from '../../helpers/fetch-appointments-by-date';
 
 
 const initialState = {
@@ -62,6 +62,7 @@ const calendarReducer = (draft, action) => {
 
 export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentDayShown }) => {   
     const { setChosenDate } = useContext(ChosenDateContext);
+    const { signedInUser } = useContext(UserContext);
 
     const [state, dispatch] = useImmerReducer(calendarReducer, initialState);
 
@@ -95,7 +96,7 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
         setOpenAvailability(true);
         setCurrentDayShown({ day, month, year });
       }
-      fetchData()
+      fetchAppointmentsByDate(signedInUser, {day, month, year});
     }
     
     useEffect(() => {
@@ -124,19 +125,6 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
      * Continue with fetching of the data and make it
      * display on left-hand side of the dashboard
      */
-
-
-    const fetchData = async() => {
-      try {
-        const response = await axios.get('http://localhost:3333/users/1');
-        const {availability} = await response.data;
-        const thisDayBookings = await availability.find(booking => booking.day === currentDayShown.day);
-        console.log(thisDayBookings.time.map(availableTime => availableTime));
-        
-      } catch (error) {
-        console.log(error.response);
-      }
-    }
 
     return (
         <>

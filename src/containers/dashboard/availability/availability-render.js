@@ -15,7 +15,7 @@ export const AvailabilityRender = ({state, handleChange, increment, decrement, s
                         type="number"
                         onChange={handleChange} 
                         min="0"
-                        max="24"
+                        max="23"
                     />
                     <Availability.Button onClick={() => decrement('startHour')}>-</Availability.Button>
                 </Availability.Column>

@@ -4,169 +4,158 @@
       "id": 1,
       "fullName": "John Doe",
       "email": "johndoe@gmail.com",
-      "availability": [
-        {
-          "day": 20,
-          "month": 4,
-          "year": 2022,
-          "time": [
-            "8:00",
-            "9:00",
-            "10:00"
-          ]
-        },
-        {
-          "day": 21,
-          "month": 4,
-          "year": 2022,
-          "time": [
-            "8:00",
-            "9:00",
-            "10:00"
-          ]
-        },
-        {
-          "day": 22,
-          "month": 4,
-          "year": 2022,
-          "time": [
-            "8:00",
-            "9:00",
-            "10:00",
-            "10:30"
-          ]
-        }
-      ]
+      "phoneNumber": ""
     },
     {
       "id": 2,
       "fullName": "Jane Doe",
       "email": "janedoe@gmail.com",
-      "availability": [
-        {
-          "day": 25,
-          "month": 4,
-          "year": 2022,
-          "time": [
-            "8:00",
-            "9:00",
-            "10:00"
-          ]
-        },
-        {
-          "day": 26,
-          "month": 4,
-          "year": 2022,
-          "time": [
-            "8:00",
-            "9:00",
-            "10:00"
-          ]
-        },
-        {
-          "day": 27,
-          "month": 4,
-          "year": 2022,
-          "time": [
-            "8:00",
-            "9:00",
-            "10:00",
-            "10:30"
-          ]
-        }
-      ]
+      "phoneNumber": ""
     },
     {
+      "id": 3,
       "fullName": "Jenna Lenie",
       "email": "jl@gmail.com",
-      "phoneNumber": "",
-      "id": 3,
-      "availability": []
+      "phoneNumber": ""
     },
     {
+      "id": 4,
       "fullName": "George Lu",
       "email": "luger88@gmail.com",
-      "phoneNumber": "5584",
-      "id": 4,
-      "availability": []
-    },
-    {
-      "fullName": "123",
-      "email": "123@123",
-      "phoneNumber": "123",
-      "availability": [],
-      "id": 5
-    },
-    {
-      "fullName": "123",
-      "email": "223@323",
-      "phoneNumber": "423",
-      "availability": [],
-      "id": 6
-    },
-    {
-      "fullName": "123",
-      "email": "123@432234",
-      "password": "123@123",
-      "phoneNumber": "123",
-      "availability": [],
-      "id": 7
-    },
-    {
-      "fullName": "123",
-      "email": "123@234",
-      "password": "123@",
-      "phoneNumber": "123",
-      "availability": [],
-      "id": 8
-    },
-    {
-      "fullName": "123",
-      "email": "123@1234",
-      "password": "234",
-      "phoneNumber": "234",
-      "availability": [],
-      "id": 9
-    },
-    {
-      "fullName": "123",
-      "email": "223@123123",
-      "password": "423",
-      "phoneNumber": "523",
-      "availability": [],
-      "id": 10
-    },
-    {
-      "fullName": "Name",
-      "email": "email@address",
-      "password": "paswrd",
-      "phoneNumber": "",
-      "availability": [],
-      "id": 11
-    },
-    {
-      "fullName": "123",
-      "email": "234@123",
-      "password": "345",
-      "phoneNumber": "123",
-      "availability": [],
-      "id": 12
-    },
-    {
-      "fullName": "fmqai",
-      "email": "asdfoi@fq",
-      "password": "fja4er",
-      "phoneNumber": "",
-      "availability": [],
-      "id": 13
-    },
-    {
-      "fullName": "rq23qdf",
-      "email": "agae@fwerg",
-      "password": "13e",
-      "phoneNumber": "",
-      "availability": [],
-      "id": 14
+      "phoneNumber": "5584"
     }
-  ]
+  ],
+
+  "schedule": {
+    "johndoe@gmail.com": {
+      
+      "2022": {
+        "4": {
+          "11": [
+            {
+              "time": "11:00",
+              "status": "available"
+            },
+            {
+              "time": "12:00",
+              "status": "approved"
+            },
+            {
+              "time": "13:00",
+              "status": "pending"
+            },
+            {
+              "time": "14:00",
+              "status": "approved"
+            },
+            {
+              "time": "15:00",
+              "status": "pending"
+            },
+            {
+              "time": "16:00",
+              "status": "available"
+            },
+            {
+              "time": "17:00",
+              "status": "available"
+            }
+          ],
+          "12": [
+            {
+              "time": "11:20",
+              "status": "approved"
+            },
+            {
+              "time": "11:40",
+              "status": "pending"
+            },
+            {
+              "time": "12:00",
+              "status": "pending"
+            },
+            {
+              "time": "12:20",
+              "status": "approved"
+            },
+            {
+              "time": "12:40",
+              "status": "available"
+            },
+            {
+              "time": "13:00",
+              "status": "available"
+            },
+            {
+              "time": "14:00",
+              "status": "available"
+            }
+          ]
+        },
+        "5": {
+          "22": [
+            {
+              "time": "09:00",
+              "status": "available"
+            },
+            {
+              "time": "09:30",
+              "status": "approved"
+            },
+            {
+              "time": "10:00",
+              "status": "pending"
+            },
+            {
+              "time": "10:30",
+              "status": "approved"
+            },
+            {
+              "time": "11:00",
+              "status": "pending"
+            },
+            {
+              "time": "11:30",
+              "status": "available"
+            },
+            {
+              "time": "12:00",
+              "status": "available"
+            }
+          ],
+          "24": [
+            {
+              "time": "12:30",
+              "status": "approved"
+            },
+            {
+              "time": "12:45",
+              "status": "pending"
+            },
+            {
+              "time": "13:00",
+              "status": "pending"
+            },
+            {
+              "time": "13:15",
+              "status": "approved"
+            },
+            {
+              "time": "13:30",
+              "status": "available"
+            },
+            {
+              "time": "13:45",
+              "status": "available"
+            },
+            {
+              "time": "14:00",
+              "status": "available"
+            }
+          ]
+        }
+      }
+    }
+  }
+
 }

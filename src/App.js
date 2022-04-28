@@ -11,9 +11,9 @@ import { AuthContext } from './context';
 
 const App = () => {
   const { isAuth } = useContext(AuthContext);
-  if (!isAuth) {
-    return <LoginPage />
-  }
+  // if (!isAuth) {
+  //   return <LoginPage />
+  // }
   return (
     <>
       <Routes>

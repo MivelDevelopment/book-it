@@ -5,3 +5,4 @@ export { ScheduledAppointmentsContext, ScheduledAppointmentsContextProvider } fr
 export { PopupContext, PopupContextProvider } from './popup-context';
 export { AvailableSchedulesContext, AvailableSchedulesContextProvider } from './available-schedules';
 export { AuthContext, AuthContextProvider } from './auth-context';
+export { UserContext, UserContextProvider } from './user-context';
