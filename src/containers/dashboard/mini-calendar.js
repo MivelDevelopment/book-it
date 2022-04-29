@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
+import { nanoid } from 'nanoid';
 
 import { Calendar, DayBox } from '../../components';
 import { CalendarHeadingContainer } from '../calendar/calendar-heading-container';
@@ -140,12 +141,17 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
       <Calendar.Mini>
         <DaysOfWeek isMini />
 
-        {arrayOfDaysInMonth.map((day, index) => (
+        {arrayOfDaysInMonth.map((day, index) => {
+          const isNotBeforeFirstDayOfDisplayedMonth = !(index < firstDayOfMonth);
+          const isNotAfterLastDayOfDisplayedMonth = !(index > numDays + firstDayOfMonth - 1);
+          const isThisMonthAndBeforeToday = thisMonth && day < today;
+          const isDayNotFromPreviousMonth = !(index < firstDayOfMonth);
+          return (
           <DayBox
-            key={`${day}${index}`}
+            key={nanoid()}
             datebox
-            inThePast={(pastMonth && !(index < firstDayOfMonth) && !(index > numDays + firstDayOfMonth - 1))
-              || (thisMonth && day < today)}
+            inThePast={(pastMonth && isNotBeforeFirstDayOfDisplayedMonth && isNotAfterLastDayOfDisplayedMonth) 
+              || (isThisMonthAndBeforeToday && isDayNotFromPreviousMonth)}
           >
             <DayBox.Date
               isMini
@@ -155,7 +161,7 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
               {day}
             </DayBox.Date>
           </DayBox>
-        ))}
+        )})}
 
       </Calendar.Mini>
     </>

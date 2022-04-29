@@ -9,7 +9,10 @@ export const InnerContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-    background-color: rgba(33, 33, 33, .1);
+    background-color: ${({status}) => 
+    status === 'approved' ? 'rgba(144, 238, 144, 1)' 
+        : status === 'pending' ? 'rgba(255, 255, 200, 1)' 
+        : 'rgba(33, 33, 33, .1)'};
     padding: 10px 15px;
     margin-bottom: 5px;
     border: 1px solid rgba(33, 33, 33, .1);
@@ -19,10 +22,17 @@ export const InnerContainer = styled.div`
 
     cursor: pointer;
 
+    
+
     &:hover {
-        background-color: #fff;
+        background-color: ${({status}) => 
+            status === 'approved' ? 'rgba(144, 238, 144, .6)' 
+                : status === 'pending' ? 'rgba(255, 255, 200, .6)' 
+                : 'rgba(33, 33, 33, .06)'};
         transform: scale(.98);
     }
+
+    
     
 `;
 

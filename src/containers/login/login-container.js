@@ -22,6 +22,7 @@ export const LoginContainer = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                console.log(user);
                 setIsAuth(true);
                 setSignedInUser(email);
                 localStorage.setItem('isAuth', email);

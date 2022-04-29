@@ -14,7 +14,7 @@ export const DashboardContainer = () => {
     const [openAvailability, setOpenAvailability] = useState(false);
     const [currentDayShown, setCurrentDayShown] = useState('');
     const [openSchedule, setOpenSchedule] = useState(false);
-    const [currentAppointmentShown, setCurrentAppointmentShown] = useState('');
+    const [currentAppointmentShown, setCurrentAppointmentShown] = useState(null);
 
     return (
         <Dashboard>

@@ -15,25 +15,27 @@ import {
   UserContextProvider
 } from './context';
 
+
 localStorage.removeItem('isAuth');
+
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
-        <UserContextProvider>
-          <PopupContextProvider>
-            <ChosenDateContextProvider>
-              <ChosenTimeContextProvider>
-                <ScheduledAppointmentsContextProvider>
-                  <AvailableSchedulesContextProvider>
-                    <App />
-                  </AvailableSchedulesContextProvider>
-                </ScheduledAppointmentsContextProvider>
-              </ChosenTimeContextProvider>
-            </ChosenDateContextProvider>
-          </PopupContextProvider>
-        </UserContextProvider>
+      <UserContextProvider>
+        <PopupContextProvider>
+        <ChosenDateContextProvider>
+        <ChosenTimeContextProvider>
+        <ScheduledAppointmentsContextProvider>
+        <AvailableSchedulesContextProvider>
+          <App />
+        </AvailableSchedulesContextProvider>
+        </ScheduledAppointmentsContextProvider>
+        </ChosenTimeContextProvider>
+        </ChosenDateContextProvider>
+        </PopupContextProvider>
+      </UserContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>,

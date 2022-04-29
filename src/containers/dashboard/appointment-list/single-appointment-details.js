@@ -3,8 +3,9 @@ import React from 'react';
 import { AppointmentInfo } from '../../../components'
 
 export const SingleAppointmentDetails = ({ booking }) => {
-    
-    
+    const { year, time } = booking;
+    const day = booking?.day < 10 ? `0${booking?.day}` : booking?.day;
+    const month = booking?.month + 1 < 10 ? `0${booking?.month + 1}` : booking?.month + 1
     return (
         <>
         {booking && 
@@ -15,7 +16,7 @@ export const SingleAppointmentDetails = ({ booking }) => {
             <AppointmentInfo.Info>Phone number: <b>{booking?.scheduler?.number || 'N/A'}</b></AppointmentInfo.Info>
             <AppointmentInfo.Info>Message: <b>{booking?.scheduler?.message || 'N/A'}</b></AppointmentInfo.Info>
             <AppointmentInfo.Heading>Scheduled</AppointmentInfo.Heading>
-            <AppointmentInfo.Info><b>{booking?.appointment?.day < 10 ? `0${booking?.appointment?.day}` : booking?.appointment?.day} / {booking?.appointment?.month + 1 < 10 ? `0${booking?.appointment?.month + 1}` : booking?.appointment?.month + 1} / {booking?.appointment?.year}</b> at <b>{booking?.appointment?.time}</b></AppointmentInfo.Info>
+            <AppointmentInfo.Info><b>{day} / {month} / {year}</b> at <b>{time}</b></AppointmentInfo.Info>
         </>}
         </>
     )

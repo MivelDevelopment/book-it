@@ -118,21 +118,27 @@ export const CalendarContainer = () => {
         <Calendar>
             <DaysOfWeek />
                 
-            {arrayOfDaysInMonth.map((day, index) => (
-            <DayBox 
-                key={nanoid()} 
-                datebox
-                inThePast={(pastMonth && !(index < firstDayOfMonth) && !(index > numDays + firstDayOfMonth - 1)) 
-                        || (thisMonth && day < today) && !(index < firstDayOfMonth)}
-            >
-                <DayBox.Date 
-                  onClick={() => handleClick(day, index)} 
-                  month={index < firstDayOfMonth || index > numDays + firstDayOfMonth - 1 ? 'other' : 'curr'}
-                >
-                    {day}
-                </DayBox.Date>
-            </DayBox>
-            ))}
+            {arrayOfDaysInMonth.map((day, index) => {
+              const isNotBeforeFirstDayOfDisplayedMonth = !(index < firstDayOfMonth);
+              const isNotAfterLastDayOfDisplayedMonth = !(index > numDays + firstDayOfMonth - 1);
+              const isThisMonthAndBeforeToday = thisMonth && day < today;
+              const isDayNotFromPreviousMonth = !(index < firstDayOfMonth);
+
+              return (
+              <DayBox 
+                  key={nanoid()} 
+                  datebox
+                  inThePast={(pastMonth && isNotBeforeFirstDayOfDisplayedMonth && isNotAfterLastDayOfDisplayedMonth) 
+                    || (isThisMonthAndBeforeToday && isDayNotFromPreviousMonth)}
+              >
+                  <DayBox.Date 
+                    onClick={() => handleClick(day, index)} 
+                    month={index < firstDayOfMonth || index > numDays + firstDayOfMonth - 1 ? 'other' : 'curr'}
+                  >
+                      {day}
+                  </DayBox.Date>
+              </DayBox>
+            )})}
             
         </Calendar>
         </>
