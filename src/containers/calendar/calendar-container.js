@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
+import { nanoid } from 'nanoid'
 
 import { Calendar, DayBox } from '../../components';
 import { CalendarHeadingContainer } from './calendar-heading-container';
@@ -106,7 +107,6 @@ export const CalendarContainer = () => {
 
     }, [dispatch, numDays, firstDayOfMonth, month, year, todayYear, todayMonth])
 
-
     return (
         <>
         <CalendarHeadingContainer 
@@ -120,10 +120,10 @@ export const CalendarContainer = () => {
                 
             {arrayOfDaysInMonth.map((day, index) => (
             <DayBox 
-                key={`${day}${index}`} 
+                key={nanoid()} 
                 datebox
                 inThePast={(pastMonth && !(index < firstDayOfMonth) && !(index > numDays + firstDayOfMonth - 1)) 
-                        || (thisMonth && day < today) }
+                        || (thisMonth && day < today) && !(index < firstDayOfMonth)}
             >
                 <DayBox.Date 
                   onClick={() => handleClick(day, index)} 
