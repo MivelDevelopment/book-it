@@ -20,15 +20,18 @@ export const DateContent = styled.div`
     justify-content: center;
 
     max-height: 100px;
-    height: ${({isMini}) => isMini ? '35px' : '10vw'};
+    height: ${({ isMini }) => isMini ? '40px' : '10vw'};
     max-width: 100px;
-    width: 10vw;
-    background-color: ${({ month }) => month === 'curr' ? 'lightblue' : 'rgba(33, 33, 33, .3)'};
-    border: 1px solid black;
-    border-radius: 10px;
+    width: ${({ isMini }) => isMini ? '40px' : '10vw'};
+    background-color: ${({ month }) => month === 'curr' ? '#fff' : 'rgba(33, 33, 33, .3)'};
+    border: 2px solid transparent;
+    border-radius: 50%;
     user-select: none;
 `;
 
 export const DayContent = styled(DateContent)`
-    max-height: ${({isMini}) => isMini ? '35px' : '50px'};
+    width: 10vw;
+    max-height: ${({ isMini }) => isMini ? '40px' : '50px'};
+    border-radius: 5px;
+    margin-bottom: ${({ isMini }) => !isMini && '10px'};
 `;
