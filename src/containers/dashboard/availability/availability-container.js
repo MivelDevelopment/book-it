@@ -10,6 +10,7 @@ const initialState = {
     startHour: 9,
     endHour: 17,
     interval: 30,
+    breakInterval: 15,
     errorMessage: '',
     isErrorDisplayed: false,
     isButtonDisabled: false
@@ -49,53 +50,60 @@ export const AvailabilityContainer = () => {
     const [state, dispatch] = useImmerReducer(reducer, initialState);
 
     const handleChange = e => {
-        let value;
-        if (e.target.name !== 'interval') {
-            value = e.target.value < 0 ? 0 : e.target.value > 24 ? 24 : e.target.value;
+        let payloadValue;
+        const { name, value } = e.target;
+
+        if (name !== 'interval') {
+            payloadValue = value < 0 ? 0 : value > 24 ? 24 : value;
         }
-        if (e.target.name === 'interval') {
-            value = e.target.value <= 1 ? 1 : e.target.value > 900 ? 900 : e.target.value;
+        if (name === 'interval') {
+            payloadValue = value <= 1 ? 1 : value > 900 ? 900 : value;
+        }
+        if (name === 'breakInterval') {
+            payloadValue = value <= 0 ? 0 : value > 900 ? 900 : value;
         }
 
-        dispatch({type: 'MANUAL_INPUT', value: e.target.name, payload: Number(value)});
-        dispatch({type: 'RESET_ERROR'});
+        dispatch({ type: 'MANUAL_INPUT', value: name, payload: Number(payloadValue) });
+        dispatch({ type: 'RESET_ERROR' });
     }
 
     const increment = (target) => {
         let value = state[target] >= 23 ? 23 : state[target];
-        dispatch({type: 'INCREMENT', target: target, payload: Number(value)});
+        const { startHour, endHour } = state;
+        dispatch({ type: 'INCREMENT', target: target, payload: Number(value) });
 
-        if (state.startHour >= state.endHour) {
-            let payload = state.startHour >= 23 ? 23 : state.startHour;
-            dispatch({ type: 'INCREMENT', target: 'endHour', payload: payload});
+        if (startHour >= endHour) {
+            let payload = startHour >= 23 ? 23 : startHour;
+            dispatch({ type: 'INCREMENT', target: 'endHour', payload: payload });
         }
-        
-        dispatch({type: 'RESET_ERROR'});
+
+        dispatch({ type: 'RESET_ERROR' });
     }
 
     const decrement = (target) => {
         let value = state[target] < 1 ? 1 : state[target];
-        dispatch({type: 'DECREMENT', target: target, payload: Number(value)});
+        const { startHour, endHour } = state;
+        dispatch({ type: 'DECREMENT', target: target, payload: Number(value) });
 
-        if (state.startHour >= state.endHour) {
-            let payload = state.endHour <= 1 ? 1 : state.endHour;
-            dispatch({ type: 'DECREMENT', target: 'startHour', payload: payload});
+        if (startHour >= endHour) {
+            let payload = endHour <= 1 ? 1 : endHour;
+            dispatch({ type: 'DECREMENT', target: 'startHour', payload: payload });
         }
-        
-        dispatch({type: 'RESET_ERROR'});
+
+        dispatch({ type: 'RESET_ERROR' });
     }
 
     const setScheduleInteval = () => {
-        const {startHour: start, endHour: end, interval} = state;
+        const { startHour: start, endHour: end, interval, breakInterval } = state;
         if (start === end) {
-            dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time and ending time cannot be the same! Did you want to set an individual appointment?'});
+            dispatch({ type: 'DISPLAY_ERROR', payload: 'Starting time and ending time cannot be the same! Did you want to set an individual appointment?' });
         } else if (start > end) {
-            dispatch({type: 'DISPLAY_ERROR', payload: 'Starting time cannot be set later than ending time'});
+            dispatch({ type: 'DISPLAY_ERROR', payload: 'Starting time cannot be set later than ending time' });
         } else if (start > end || start === end) {
-            dispatch({type: 'DISABLE_BUTTON'});
+            dispatch({ type: 'DISABLE_BUTTON' });
         } else {
-            console.log(populateSchedule(start, end, interval));
-        }        
+            console.log(populateSchedule(start, end, interval, breakInterval));
+        }
     }
 
 
@@ -104,12 +112,12 @@ export const AvailabilityContainer = () => {
     }, [])
 
     return (
-            <AvailabilityRender 
-                state={state}
-                handleChange={handleChange}
-                increment={increment}
-                decrement={decrement}
-                setScheduleInteval={setScheduleInteval}
-            />
+        <AvailabilityRender
+            state={state}
+            handleChange={handleChange}
+            increment={increment}
+            decrement={decrement}
+            setScheduleInteval={setScheduleInteval}
+        />
     )
 }

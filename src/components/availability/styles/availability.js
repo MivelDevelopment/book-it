@@ -5,6 +5,11 @@ export const Container = styled.div``;
 export const Heading = styled.h3`
     margin-top: .5rem;
     margin-bottom: .5rem;
+    line-height: 1;
+`;
+
+export const Small = styled.span`
+    font-size: .75rem;
 `;
 
 export const Info = styled.p`

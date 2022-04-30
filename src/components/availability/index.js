@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     Container,
-    Heading, 
+    Heading,
+    Small,
     Info,
     Row,
     Column,
@@ -16,6 +17,10 @@ const Availability = ({ children, ...restProps }) => {
 
 Availability.Heading = ({ children, ...restProps }) => {
     return <Heading {...restProps}>{children}</Heading>
+}
+
+Availability.Small = ({ children, ...restProps }) => {
+    return <Small {...restProps}>{children}</Small>
 }
 
 Availability.Info = ({ children, ...restProps }) => {
