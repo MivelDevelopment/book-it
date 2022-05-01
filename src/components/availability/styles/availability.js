@@ -20,7 +20,7 @@ export const Info = styled.p`
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 `;
 
@@ -30,7 +30,11 @@ export const Column = styled.div`
     justify-content: space-around;
     align-items: center;
 
-    width: 100%;
+    padding: 0 20px;
+
+    @media (min-width: 991px) {
+        width: 100%;
+    }
 `;
 
 export const Input = styled.input`

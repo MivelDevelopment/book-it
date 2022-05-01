@@ -8,12 +8,18 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { getScheduleFromFirebase } from './get-schedule-from-firebase';
 
 const initialAppointment = {
-    id: "202204131100",
-    day: 13,
+    id: "202204141200",
+    day: 14,
     month: 4,
     year: 2022,
-    time: '11:00',
-    status: 'available'
+    time: '12:00',
+    status: 'available',
+    scheduler: {
+        fullName: 'Brandon',
+        email: 'letsgo@brandon.letsgo',
+        phoneNumber: '67',
+        message: "Let's go Brandon. LET'S GO!"
+    }
 };
 
 export const addAppointmentToSchedule = async (dispatch, appointment = initialAppointment) => {

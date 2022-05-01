@@ -5,11 +5,7 @@ import { fetchDataByUserId } from '../../../helpers/fetch-data-by-user-id';
 
 import { AvailabilityRender } from './availability-render';
 import { populateSchedule } from '../../../helpers/populate-schedule-by-interval';
-
-
-import { db } from '../../../firebase-config';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { addAppointmentToSchedule } from '../../../helpers/set-appointment-to-firebase';
+import { addAppointmentToSchedule } from '../../../helpers/add-appointment-to-firebase';
 
 const initialState = {
     startHour: 9,
@@ -51,7 +47,7 @@ const reducer = (draft, action) => {
 
 
 
-export const AvailabilityContainer = () => {
+export const AvailabilityContainer = ({ scheduleOptionChosen }) => {
     const [state, dispatch] = useImmerReducer(reducer, initialState);
 
     const handleChange = e => {
@@ -107,7 +103,8 @@ export const AvailabilityContainer = () => {
         } else if (start > end || start === end) {
             dispatch({ type: 'DISABLE_BUTTON' });
         } else {
-            // addAppointmentToSchedule(dispatch);
+            // scheduleOptionChosen === 'single' ? addAppointmentToSchedule(dispatch) : populateSchedule(dispatch);
+            addAppointmentToSchedule(dispatch)
             console.log(populateSchedule(start, end, interval, breakInterval));
         }
     }

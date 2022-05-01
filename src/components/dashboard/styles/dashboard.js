@@ -15,18 +15,28 @@ export const Container = styled.div`
 
 export const InnerContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: 30vh;
-    width: 90%;
+    flex-direction: column-reverse;
 
+    width: 90%;
+    max-width: 991px;
+    padding: 20px;
+    border-radius: 50px;
     background-color: white;
+    
+    @media (min-width: 600px) {
+        padding: 50px;
+    }
+
     @media (min-width: 991px) {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 100px;
+
         min-height: 80vh;
         width: 80%;
+
     }
+    
 `;
 
 export const InnerColumn = styled.div`
@@ -34,13 +44,12 @@ export const InnerColumn = styled.div`
     position: relative;
 
     height: 45vh;
-    width: 95%;
+    justify-content: center;
 
     background-color: #fff;
     
     @media (min-width: 991px) {
-        height: 80vh;
-        width: 50%;
+        height: 70vh;
     }
 `;
 
@@ -49,20 +58,16 @@ export const InnerContents = styled.div`
     flex-direction: column;
     background-color: #fff;
     
-    max-height: 30vh;
     height: 100%;
     overflow: hidden;
-    position: absolute;
-
-    top: 0; left: 5%;
     width: 90%;
-    padding: 40px 0;
+    padding: 0;
 
     transition: .4s;
 
     @media (min-width: 991px) {
         max-height: 80vh;
-        max-width: 90%;
+        padding: 40px 0;
     }
 `;
 

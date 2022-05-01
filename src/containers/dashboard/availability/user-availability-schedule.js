@@ -13,8 +13,7 @@ export const UserAvailabilitySchedule = ({ currentDayShown }) => {
                 {currentDayShown.day < 10 ? `0${currentDayShown.day}` : currentDayShown.day} / {currentDayShown.month + 1 < 10 ? `0${currentDayShown.month + 1}` : currentDayShown.month + 1} / {currentDayShown.year}
             </Dashboard.Subheading>
 
-
-            <AvailabilityContainer currentDayShown={currentDayShown} />
+            <AvailabilityContainer />
         </Dashboard.InnerContents>
     )
 }
