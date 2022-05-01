@@ -17,11 +17,11 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/*" element={<DashboardContainer />} />
+        <Route path="/dashboard/*" element={<DashboardContainer />} />
       </Routes>
       {/* <DashboardContainer /> */}
-      <CalendarContainer />
-      <PopupContainer />
+      {/* <CalendarContainer />
+      <PopupContainer /> */}
     </>
   );
 }

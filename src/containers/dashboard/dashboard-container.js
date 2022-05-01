@@ -20,30 +20,30 @@ export const DashboardContainer = () => {
         <Dashboard>
             <Dashboard.Inner>
                 <Dashboard.Column>
-                {!openAvailability ? (
-                    <Dashboard.InnerContents>
-                        <h2>Your schedule</h2>
-                        
-                        <AppointmentListContainer 
-                            openSchedule={openSchedule} 
-                            setOpenSchedule={setOpenSchedule} 
-                            currentAppointmentShown={currentAppointmentShown}
-                            setCurrentAppointmentShown={setCurrentAppointmentShown}
-                        />
-                    </Dashboard.InnerContents>) : (
-                    <UserAvailabilitySchedule currentDayShown={currentDayShown} />
-                )}
+                    {!openAvailability ? (
+                        <Dashboard.InnerContents>
+                            <h2>Your schedule</h2>
+
+                            <AppointmentListContainer
+                                openSchedule={openSchedule}
+                                setOpenSchedule={setOpenSchedule}
+                                currentAppointmentShown={currentAppointmentShown}
+                                setCurrentAppointmentShown={setCurrentAppointmentShown}
+                            />
+                        </Dashboard.InnerContents>) : (
+                        <UserAvailabilitySchedule currentDayShown={currentDayShown} />
+                    )}
 
                 </Dashboard.Column>
-                
+
                 <Dashboard.Column>
-                    { !openSchedule ? (
+                    {!openSchedule ? (
                         <Dashboard.InnerContents>
                             <h2>Set your availability</h2>
 
-                            <MiniCalendar 
-                                openAvailability={openAvailability} 
-                                setOpenAvailability={setOpenAvailability} 
+                            <MiniCalendar
+                                openAvailability={openAvailability}
+                                setOpenAvailability={setOpenAvailability}
                                 currentDayShown={currentDayShown}
                                 setCurrentDayShown={setCurrentDayShown}
                             />
@@ -51,13 +51,13 @@ export const DashboardContainer = () => {
                         </Dashboard.InnerContents>) : (
                         <Dashboard.InnerContents>
                             <h2>Appointment details</h2>
-                            
-                            {currentAppointmentShown && 
-                                <SingleAppointmentDetails booking={currentAppointmentShown}/>
+
+                            {currentAppointmentShown &&
+                                <SingleAppointmentDetails booking={currentAppointmentShown} />
                             }
                         </Dashboard.InnerContents>
                     )}
-                
+
                 </Dashboard.Column>
             </Dashboard.Inner>
         </Dashboard>

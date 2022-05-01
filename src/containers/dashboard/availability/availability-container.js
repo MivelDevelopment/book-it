@@ -6,6 +6,11 @@ import { fetchDataByUserId } from '../../../helpers/fetch-data-by-user-id';
 import { AvailabilityRender } from './availability-render';
 import { populateSchedule } from '../../../helpers/populate-schedule-by-interval';
 
+
+import { db } from '../../../firebase-config';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { addAppointmentToSchedule } from '../../../helpers/set-appointment-to-firebase';
+
 const initialState = {
     startHour: 9,
     endHour: 17,
@@ -102,6 +107,7 @@ export const AvailabilityContainer = () => {
         } else if (start > end || start === end) {
             dispatch({ type: 'DISABLE_BUTTON' });
         } else {
+            // addAppointmentToSchedule(dispatch);
             console.log(populateSchedule(start, end, interval, breakInterval));
         }
     }

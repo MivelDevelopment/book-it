@@ -35,7 +35,7 @@ export const AppointmentListContainer = ({ openSchedule, setOpenSchedule, curren
     };
 
     useEffect(() => {
-        if(isLoading) {
+        if (isLoading) {
             fetchData(signedInUser);
         } else {
             let sortedIds = sortAppointmentIdsIncrementaly(appointments);
@@ -43,7 +43,7 @@ export const AppointmentListContainer = ({ openSchedule, setOpenSchedule, curren
             let sortedAppointmentsComponentsArray = sortedAppointmentsArray.map(appointment => {
                 return <AppointmentListItem key={nanoid()} appointment={appointment} handleClick={handleClick} />
             });
-            
+
             setSortedAppointmentList(sortedAppointmentsComponentsArray);
         }
     }, [signedInUser, isLoading, currentAppointmentShown]);
@@ -51,7 +51,7 @@ export const AppointmentListContainer = ({ openSchedule, setOpenSchedule, curren
 
     return (
         <AppointmentList>
-            {isLoading ? null : appointments.length < 1 ? 
+            {isLoading ? null : appointments.length < 1 ?
                 <AppointmentList.Subheading>
                     Your schedule is wide open!
                 </AppointmentList.Subheading>
