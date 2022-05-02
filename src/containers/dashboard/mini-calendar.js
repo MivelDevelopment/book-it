@@ -147,21 +147,22 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
           const isThisMonthAndBeforeToday = thisMonth && day < today;
           const isDayNotFromPreviousMonth = !(index < firstDayOfMonth);
           return (
-          <DayBox
-            key={nanoid()}
-            datebox
-            inThePast={(pastMonth && isNotBeforeFirstDayOfDisplayedMonth && isNotAfterLastDayOfDisplayedMonth) 
-              || (isThisMonthAndBeforeToday && isDayNotFromPreviousMonth)}
-          >
-            <DayBox.Date
-              isMini
-              onClick={() => handleClick(day, index)}
-              month={index < firstDayOfMonth || index > numDays + firstDayOfMonth - 1 ? 'other' : 'curr'}
+            <DayBox
+              key={nanoid()}
+              datebox
+              inThePast={(pastMonth && isNotBeforeFirstDayOfDisplayedMonth && isNotAfterLastDayOfDisplayedMonth)
+                || (isThisMonthAndBeforeToday && isDayNotFromPreviousMonth && isNotAfterLastDayOfDisplayedMonth)}
             >
-              {day}
-            </DayBox.Date>
-          </DayBox>
-        )})}
+              <DayBox.Date
+                isMini
+                onClick={() => handleClick(day, index)}
+                month={index < firstDayOfMonth || index > numDays + firstDayOfMonth - 1 ? 'other' : 'curr'}
+              >
+                {day}
+              </DayBox.Date>
+            </DayBox>
+          )
+        })}
 
       </Calendar.Mini>
     </>

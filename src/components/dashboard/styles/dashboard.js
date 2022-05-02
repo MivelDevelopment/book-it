@@ -32,7 +32,7 @@ export const InnerContainer = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 100px;
 
-        min-height: 80vh;
+        min-height: 50vh;
         width: 80%;
 
     }
@@ -49,7 +49,7 @@ export const InnerColumn = styled.div`
     background-color: #fff;
     
     @media (min-width: 991px) {
-        height: 70vh;
+        height: 50vh;
     }
 `;
 
