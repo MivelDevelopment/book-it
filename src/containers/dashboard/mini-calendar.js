@@ -62,7 +62,7 @@ const calendarReducer = (draft, action) => {
 }
 
 
-export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentDayShown }) => {
+export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentDayShown, setSearchParams }) => {
   const { setChosenDate } = useContext(ChosenDateContext);
   const { signedInUser } = useContext(UserContext);
 
@@ -82,7 +82,8 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
 
   const handleClick = (day, index) => {
     setChosenDate({ day, month, year });
-
+    setSearchParams({ day, month });
+    console.log(day, month);
     let isBeforeFirstDayOfTheMonth = index < firstDayOfMonth;
     let isAfterLastDayOfTheMonth = index > numDays + firstDayOfMonth - 1;
     let isThisMonthButInPast = (thisMonth && day < today);
@@ -99,6 +100,10 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
       setCurrentDayShown({ day, month, year });
     }
     fetchAppointmentsByDate(signedInUser);
+    console.log(!isBeforeFirstDayOfTheMonth && index >= firstDayOfMonth && index < numDays + firstDayOfMonth);
+    console.log(numDays + firstDayOfMonth - 1);
+
+
   }
 
   useEffect(() => {
@@ -123,13 +128,6 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
   }, [dispatch, numDays, firstDayOfMonth, month, year, todayYear, todayMonth])
 
 
-
-  /**
-   * TODO
-   * Continue with fetching of the data and make it
-   * display on left-hand side of the dashboard
-   */
-
   return (
     <>
       <CalendarHeadingContainer
@@ -146,16 +144,19 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
           const isNotAfterLastDayOfDisplayedMonth = !(index > numDays + firstDayOfMonth - 1);
           const isThisMonthAndBeforeToday = thisMonth && day < today;
           const isDayNotFromPreviousMonth = !(index < firstDayOfMonth);
+
+          const isInThePast = (pastMonth && isNotBeforeFirstDayOfDisplayedMonth && isNotAfterLastDayOfDisplayedMonth)
+            || (isThisMonthAndBeforeToday && isDayNotFromPreviousMonth && isNotAfterLastDayOfDisplayedMonth)
+
           return (
             <DayBox
               key={nanoid()}
               datebox
-              inThePast={(pastMonth && isNotBeforeFirstDayOfDisplayedMonth && isNotAfterLastDayOfDisplayedMonth)
-                || (isThisMonthAndBeforeToday && isDayNotFromPreviousMonth && isNotAfterLastDayOfDisplayedMonth)}
+              inThePast={isInThePast}
             >
               <DayBox.Date
                 isMini
-                onClick={() => handleClick(day, index)}
+                onClick={() => handleClick(day, index, isInThePast)}
                 month={index < firstDayOfMonth || index > numDays + firstDayOfMonth - 1 ? 'other' : 'curr'}
               >
                 {day}

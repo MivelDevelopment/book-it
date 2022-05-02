@@ -67,7 +67,6 @@ export const InnerContents = styled.div`
 
     @media (min-width: 991px) {
         max-height: 80vh;
-        padding: 40px 0;
     }
 `;
 

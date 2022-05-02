@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { Dashboard } from '../../components';
 import { UserAvailabilitySchedule } from './availability/user-availability-schedule';
@@ -15,6 +16,10 @@ export const DashboardContainer = () => {
     const [currentDayShown, setCurrentDayShown] = useState('');
     const [openSchedule, setOpenSchedule] = useState(false);
     const [currentAppointmentShown, setCurrentAppointmentShown] = useState(null);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    React.useEffect(() => { console.log(searchParams.day) }, [searchParams]);
 
     return (
         <Dashboard>
@@ -46,6 +51,7 @@ export const DashboardContainer = () => {
                                 setOpenAvailability={setOpenAvailability}
                                 currentDayShown={currentDayShown}
                                 setCurrentDayShown={setCurrentDayShown}
+                                setSearchParams={setSearchParams}
                             />
 
                         </Dashboard.InnerContents>) : (
