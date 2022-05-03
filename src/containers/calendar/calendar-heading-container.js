@@ -16,7 +16,7 @@ export const CalendarHeadingContainer = ({ dispatch, month, year }) => {
             <Calendar.TitleYear>
                 {year}
             </Calendar.TitleYear>
-            
+
             <ArrowButton onClick={() => goToNextMonth(dispatch, month, year)}>&gt;</ArrowButton>
         </Calendar.TitleBox>
     )

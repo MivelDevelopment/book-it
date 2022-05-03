@@ -7,24 +7,27 @@ import { sortAppointmentsByTime } from '../../../helpers/sort-appointments-array
 import { sortAppointmentIdsIncrementaly } from '../../../helpers/sort-appointment-ids-incrementaly';
 import { UserContext } from '../../../context';
 import { getScheduleFromFirebase } from '../../../helpers/get-schedule-from-firebase';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 
-export const AppointmentListContainer = ({ openSchedule, setOpenSchedule, currentAppointmentShown, setCurrentAppointmentShown }) => {
+export const AppointmentListContainer = ({ appointmentId, setAppointmentId, openSchedule, setOpenSchedule, currentAppointmentShown, setCurrentAppointmentShown }) => {
     const { signedInUser } = useContext(UserContext)
     const [appointments, setAppointments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortedAppointmentList, setSortedAppointmentList] = useState([]);
 
+    const navigate = useNavigate();
 
     const handleClick = (appointment) => {
-        if (!openSchedule || !currentAppointmentShown.id || appointment.id !== currentAppointmentShown.id) {
-            setCurrentAppointmentShown(appointment);
-            setOpenSchedule(true);
-        } else {
-            setCurrentAppointmentShown(null);
-            setOpenSchedule(false);
-        }
+
+        // if (!openSchedule || !currentAppointmentShown.id || appointment.id !== currentAppointmentShown.id) {
+        //     setCurrentAppointmentShown(appointment);
+        //     setOpenSchedule(true);
+        // } else {
+        //     setCurrentAppointmentShown(null);
+        //     setOpenSchedule(false);
+        // }
     }
 
     const fetchData = async (userEmail) => {

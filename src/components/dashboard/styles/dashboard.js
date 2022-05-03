@@ -39,6 +39,13 @@ export const InnerContainer = styled.div`
     
 `;
 
+export const BackButtonContainer = styled.div`
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const InnerColumn = styled.div`
     display: flex;
     position: relative;
@@ -71,3 +78,8 @@ export const InnerContents = styled.div`
 `;
 
 export const Subheading = styled(Heading)``;
+
+export const Back = styled.button`
+    font-size: 1.125rem;
+    padding: .5em 1em;
+`;

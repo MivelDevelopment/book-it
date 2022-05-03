@@ -62,7 +62,7 @@ const calendarReducer = (draft, action) => {
 }
 
 
-export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentDayShown, setSearchParams }) => {
+export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentDayShown }) => {
   const { setChosenDate } = useContext(ChosenDateContext);
   const { signedInUser } = useContext(UserContext);
 
@@ -82,8 +82,7 @@ export const MiniCalendar = ({ setOpenAvailability, currentDayShown, setCurrentD
 
   const handleClick = (day, index) => {
     setChosenDate({ day, month, year });
-    setSearchParams({ day, month });
-    console.log(day, month);
+
     let isBeforeFirstDayOfTheMonth = index < firstDayOfMonth;
     let isAfterLastDayOfTheMonth = index > numDays + firstDayOfMonth - 1;
     let isThisMonthButInPast = (thisMonth && day < today);

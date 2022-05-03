@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { 
+import {
     Container,
     InnerContainer,
+    BackButtonContainer,
     InnerColumn,
     InnerContents,
-    Subheading } from './styles/dashboard';
+    Subheading,
+    Back
+} from './styles/dashboard';
 
 const Dashboard = ({ children, ...restProps }) => {
     return <Container {...restProps}>{children}</Container>
@@ -13,6 +16,10 @@ const Dashboard = ({ children, ...restProps }) => {
 
 Dashboard.Inner = ({ children, ...restProps }) => {
     return <InnerContainer {...restProps}>{children}</InnerContainer>
+}
+
+Dashboard.BackButtonContainer = ({ children, ...restProps }) => {
+    return <BackButtonContainer {...restProps}>{children}</BackButtonContainer>
 }
 
 Dashboard.Column = ({ children, ...restProps }) => {
@@ -25,6 +32,10 @@ Dashboard.InnerContents = ({ children, ...restProps }) => {
 
 Dashboard.Subheading = ({ children, ...restProps }) => {
     return <Subheading {...restProps}>{children}</Subheading>
+}
+
+Dashboard.BackButton = ({ children, ...restProps }) => {
+    return <Back {...restProps}>{children}</Back>
 }
 
 
