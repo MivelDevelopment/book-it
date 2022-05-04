@@ -1,4 +1,4 @@
-import { getScheduleFromFirebase } from './get-schedule-from-firebase';
+import { getScheduleFromFirebase } from "../firebase/get-schedule-from-firebase";
 
 export const fetchAppointmentsByDate = async (userEmail) => {
     localStorage.setItem('isAuth', 'jdp@gmail.com');

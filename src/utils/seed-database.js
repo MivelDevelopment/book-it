@@ -1,5 +1,5 @@
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase-config';
+import { db } from '../firebase/firebase-config';
 import { schedule } from './seed-data';
 
 const seedDatabaseWithData = async () => {
@@ -10,4 +10,4 @@ const seedDatabaseWithData = async () => {
 // In order for someone not running this function twice by accident
 // this export is commented out.
 
-export { seedDatabaseWithData };
+// export { seedDatabaseWithData };

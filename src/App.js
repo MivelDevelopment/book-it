@@ -8,7 +8,6 @@ import { LoginPage } from './pages';
 import { Route, Routes } from 'react-router-dom';
 import { AuthContext } from './context';
 
-
 const App = () => {
   const { isAuth } = useContext(AuthContext);
   // if (!isAuth) {

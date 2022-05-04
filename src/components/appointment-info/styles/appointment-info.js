@@ -1,6 +1,8 @@
 import styled from 'styled-components/macro';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    overflow-y: auto;
+`;
 
 export const Heading = styled.h3`
     margin-top: 2rem;

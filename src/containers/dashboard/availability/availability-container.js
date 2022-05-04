@@ -5,7 +5,7 @@ import { fetchDataByUserId } from '../../../helpers/fetch-data-by-user-id';
 
 import { AvailabilityRender } from './availability-render';
 import { populateSchedule } from '../../../helpers/populate-schedule-by-interval';
-import { addAppointmentToSchedule } from '../../../helpers/add-appointment-to-firebase';
+import { addAppointmentToSchedule } from '../../../firebase/add-appointment-to-firebase';
 
 const initialState = {
     startHour: 9,

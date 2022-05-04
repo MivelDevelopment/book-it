@@ -6,55 +6,69 @@ import { AppointmentListItem } from './appointment-list-item';
 import { sortAppointmentsByTime } from '../../../helpers/sort-appointments-array-by-time';
 import { sortAppointmentIdsIncrementaly } from '../../../helpers/sort-appointment-ids-incrementaly';
 import { UserContext } from '../../../context';
-import { getScheduleFromFirebase } from '../../../helpers/get-schedule-from-firebase';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { getScheduleFromFirebase } from '../../../firebase/get-schedule-from-firebase';
+import { useNavigate } from 'react-router-dom';
+
+import { db } from '../../../firebase/firebase-config';
+import { doc, onSnapshot } from "firebase/firestore";
 
 
-
-export const AppointmentListContainer = ({ appointmentId, setAppointmentId, openSchedule, setOpenSchedule, currentAppointmentShown, setCurrentAppointmentShown }) => {
-    const { signedInUser } = useContext(UserContext)
-    const [appointments, setAppointments] = useState([]);
+export const AppointmentListContainer = ({ currentAppointmentShown, setCurrentAppointmentShown, isAppointmentOpen, setIsAppointmentOpen }) => {
+    const { signedInUser } = useContext(UserContext);
+    const [appointmentsList, setAppointmentsList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortedAppointmentList, setSortedAppointmentList] = useState([]);
-
+    const [cachedData, setCachedData] = useState([]);
+    
     const navigate = useNavigate();
-
+    
     const handleClick = (appointment) => {
-
-        // if (!openSchedule || !currentAppointmentShown.id || appointment.id !== currentAppointmentShown.id) {
-        //     setCurrentAppointmentShown(appointment);
-        //     setOpenSchedule(true);
-        // } else {
-        //     setCurrentAppointmentShown(null);
-        //     setOpenSchedule(false);
-        // }
+        const isDifferentAppointment = appointment.id !== currentAppointmentShown.id
+        const noPreviousAppointmentShown = !currentAppointmentShown.id
+        
+        if (isDifferentAppointment || noPreviousAppointmentShown) {
+            setCurrentAppointmentShown(appointment);
+            setIsAppointmentOpen(true);
+            navigate(`/dashboard/${appointment.id}`);
+        } else {
+            setCurrentAppointmentShown({});
+            setIsAppointmentOpen(false);
+            navigate(`/dashboard`);
+        }
     }
 
     const fetchData = async (userEmail) => {
         const data = await getScheduleFromFirebase(userEmail);
-        setAppointments(data);
+        setAppointmentsList(data);
         setIsLoading(false);
-        console.log('fetched')
     };
 
     useEffect(() => {
         if (isLoading) {
             fetchData(signedInUser);
         } else {
-            let sortedIds = sortAppointmentIdsIncrementaly(appointments);
-            let sortedAppointmentsArray = sortAppointmentsByTime(appointments, sortedIds);
+            let sortedIds = sortAppointmentIdsIncrementaly(appointmentsList);
+            let sortedAppointmentsArray = sortAppointmentsByTime(appointmentsList, sortedIds);
             let sortedAppointmentsComponentsArray = sortedAppointmentsArray.map(appointment => {
                 return <AppointmentListItem key={nanoid()} appointment={appointment} handleClick={handleClick} />
             });
 
             setSortedAppointmentList(sortedAppointmentsComponentsArray);
         }
-    }, [signedInUser, isLoading, currentAppointmentShown]);
+    }, [signedInUser, isLoading, isAppointmentOpen, currentAppointmentShown]);
+    
+    /**
+     * 
+     * napravi snapshot
+     * uporedi sa kesiranim
+     * 
+    *  */
 
+    
 
     return (
         <AppointmentList>
-            {isLoading ? null : appointments.length < 1 ?
+            {isLoading ? null : appointmentsList.length < 1 ?
                 <AppointmentList.Subheading>
                     Your schedule is wide open!
                 </AppointmentList.Subheading>

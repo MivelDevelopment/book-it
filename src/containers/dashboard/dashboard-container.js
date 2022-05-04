@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { Btn, Dashboard } from '../../components';
 import { UserAvailabilitySchedule } from './availability/user-availability-schedule';
 import { AppointmentListContainer } from './appointment-list/appointment-list-container';
-import { SingleAppointmentDetails } from './appointment-list/single-appointment-details';
+import { SingleAppointmentDetailsContainer } from './appointment-list/single-appointment-details-container';
 import { MiniCalendar } from './mini-calendar';
 
 
 
 
 export const DashboardContainer = () => {
-    const [currentAppointmentShown, setCurrentAppointmentShown] = useState();
-    const [appointmentId, setAppointmentId] = useState();
+    const [currentAppointmentShown, setCurrentAppointmentShown] = useState({});
+    const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        setCurrentAppointmentShown({});
+        setIsAppointmentOpen(false);
+        navigate('/dashboard');
+    }
 
     return (
         <Dashboard>
@@ -23,25 +31,31 @@ export const DashboardContainer = () => {
                         <AppointmentListContainer
                             currentAppointmentShown={currentAppointmentShown}
                             setCurrentAppointmentShown={setCurrentAppointmentShown}
-                            appointmentId={appointmentId}
-                            setAppointmentId={setAppointmentId}
+                            isAppointmentOpen={isAppointmentOpen}
+                            setIsAppointmentOpen={setIsAppointmentOpen}
                         />
                     </Dashboard.InnerContents>
                 </Dashboard.Column>
-                <Routes>
-                    <Route path="/:appointmentId" element={<Dashboard.InnerContents>
-                        <h2>Appointment details</h2>
 
-                        {currentAppointmentShown &&
-                            <SingleAppointmentDetails booking={currentAppointmentShown} />
+                <Routes>
+                    <Route path="/:appointmentId" element={<Dashboard.Column>
+                        <Dashboard.InnerContents>
+                            {currentAppointmentShown.status === 'available'
+                            ? <h2>Available time</h2>    
+                            : <h2>Appointment details</h2>
                         }
-                    </Dashboard.InnerContents>} />
+
+                            {currentAppointmentShown &&
+                                <SingleAppointmentDetailsContainer setIsAppointmentOpen={setIsAppointmentOpen} handleBack={handleBack} />
+                            }
+                        </Dashboard.InnerContents>
+                    </Dashboard.Column>} />
                 </Routes>
 
                 <Dashboard.Column>
                     <Dashboard.InnerContents>
                         <h2>Set your availability</h2>
-                        <Btn>
+                        <Btn style={{marginBottom: 20}}>
                             Set one by one
                         </Btn>
                         <Btn>
@@ -90,10 +104,12 @@ export const DashboardContainer = () => {
                         </Dashboard.InnerContents>
                     )}
 
-                </Dashboard.Column>
+                </Dashboard.Column>*/}
+                {isAppointmentOpen && 
                 <Dashboard.BackButtonContainer>
-                    <Dashboard.BackButton onClick={() => navigate(-1)}>&#8592; Go back</Dashboard.BackButton>
-                </Dashboard.BackButtonContainer> */}
+                    <Dashboard.BackButton onClick={handleBack}>&#8592; Go back</Dashboard.BackButton>
+                </Dashboard.BackButtonContainer> 
+                }
             </Dashboard.Inner>
 
         </Dashboard>
