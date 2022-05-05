@@ -1,8 +1,3 @@
-// uzmem datum i vreme/na
-// stavim u array
-// poredjam podatke u objekat
-// posaljem u firebase (append trenutnom array)
-
 import { db } from '../firebase-config';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { getScheduleFromFirebase } from './get-schedule-from-firebase';
