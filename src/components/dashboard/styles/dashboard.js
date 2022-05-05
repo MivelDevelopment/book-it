@@ -42,7 +42,7 @@ export const InnerContainer = styled.div`
 export const BackButtonContainer = styled.div`
     grid-column: 1 / -1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 `;
 

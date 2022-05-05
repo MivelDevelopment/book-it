@@ -8,6 +8,7 @@ export const Heading = styled.h3`
     margin-top: 2rem;
     margin-bottom: 0;
     padding-left: 2rem;
+    text-align: left;
 `;
 
 export const Info = styled.p`

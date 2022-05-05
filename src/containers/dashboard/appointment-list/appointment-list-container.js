@@ -9,9 +9,6 @@ import { UserContext } from '../../../context';
 import { getScheduleFromFirebase } from '../../../firebase/get-schedule-from-firebase';
 import { useNavigate } from 'react-router-dom';
 
-import { db } from '../../../firebase/firebase-config';
-import { doc, onSnapshot } from "firebase/firestore";
-
 
 export const AppointmentListContainer = ({ currentAppointmentShown, setCurrentAppointmentShown, isAppointmentOpen, setIsAppointmentOpen }) => {
     const { signedInUser } = useContext(UserContext);
@@ -63,8 +60,6 @@ export const AppointmentListContainer = ({ currentAppointmentShown, setCurrentAp
      * uporedi sa kesiranim
      * 
     *  */
-
-    
 
     return (
         <AppointmentList>
