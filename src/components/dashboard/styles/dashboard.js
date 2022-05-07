@@ -33,7 +33,7 @@ export const InnerContainer = styled.div`
         grid-template-rows: 1fr 100px;
 
         min-height: 50vh;
-        min-width: 991px;
+        min-width: 1100px;
         width: 100%;
 
     }

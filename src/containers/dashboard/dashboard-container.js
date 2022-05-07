@@ -7,6 +7,7 @@ import { AppointmentListContainer } from './appointment-list/appointment-list-co
 import { SingleAppointmentDetailsContainer } from './appointment-list/single-appointment-details-container';
 import { MiniCalendar } from './mini-calendar';
 import { SingleAppointmentPage } from '../../pages/dashboard/single-appointment-page';
+import { DashboardPage } from '../../pages/dashboard';
 
 
 
@@ -27,25 +28,17 @@ export const DashboardContainer = () => {
     return (
         <Dashboard>
             <Dashboard.Inner>
+                <DashboardPage
+                    currentAppointmentShown={currentAppointmentShown}
+                    setCurrentAppointmentShown={setCurrentAppointmentShown}
+                    isAppointmentOpen={isAppointmentOpen}
+                    setIsAppointmentOpen={setIsAppointmentOpen}
+                />
+
                 <Routes>
-                    <Route exact path="/" element={
-                        <Dashboard.Column>
-                            <Dashboard.InnerContents>
-                                <h2>Your schedule</h2>
-                                <AppointmentListContainer
-                                    currentAppointmentShown={currentAppointmentShown}
-                                    setCurrentAppointmentShown={setCurrentAppointmentShown}
-                                    isAppointmentOpen={isAppointmentOpen}
-                                    setIsAppointmentOpen={setIsAppointmentOpen}
-                                />
-                            </Dashboard.InnerContents>
-                        </Dashboard.Column>
-                    } />
                     <Route exact path="/:appointmentId" element={
                         <SingleAppointmentPage
                             currentAppointmentShown={currentAppointmentShown}
-                            setCurrentAppointmentShown={setCurrentAppointmentShown}
-                            isAppointmentOpen={isAppointmentOpen}
                             setIsAppointmentOpen={setIsAppointmentOpen}
                             handleBack={handleBack}
                         />}
@@ -53,7 +46,7 @@ export const DashboardContainer = () => {
                 </Routes>
 
                 <Routes>
-                    <Route exact path="/" element={
+                    <Route exact path="/set-appointments" element={
                         <Dashboard.Column>
                             <Dashboard.InnerContents>
                                 <h2>Set your availability</h2>
@@ -66,6 +59,7 @@ export const DashboardContainer = () => {
                             </Dashboard.InnerContents>
                         </Dashboard.Column>
                     } />
+
                 </Routes>
 
                 {/* <Dashboard.Column>
@@ -115,6 +109,6 @@ export const DashboardContainer = () => {
                 }
             </Dashboard.Inner>
 
-        </Dashboard>
+        </Dashboard >
     )
 }
