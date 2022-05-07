@@ -6,6 +6,7 @@ import { UserAvailabilitySchedule } from './availability/user-availability-sched
 import { AppointmentListContainer } from './appointment-list/appointment-list-container';
 import { SingleAppointmentDetailsContainer } from './appointment-list/single-appointment-details-container';
 import { MiniCalendar } from './mini-calendar';
+import { SingleAppointmentPage } from '../../pages/dashboard/single-appointment-page';
 
 
 
@@ -29,44 +30,26 @@ export const DashboardContainer = () => {
                 <Routes>
                     <Route exact path="/" element={
                         <Dashboard.Column>
-                        <Dashboard.InnerContents>
-                            <h2>Your schedule</h2>
-                            <AppointmentListContainer
-                                currentAppointmentShown={currentAppointmentShown}
-                                setCurrentAppointmentShown={setCurrentAppointmentShown}
-                                isAppointmentOpen={isAppointmentOpen}
-                                setIsAppointmentOpen={setIsAppointmentOpen}
-                            />
-                        </Dashboard.InnerContents>
-                    </Dashboard.Column>
+                            <Dashboard.InnerContents>
+                                <h2>Your schedule</h2>
+                                <AppointmentListContainer
+                                    currentAppointmentShown={currentAppointmentShown}
+                                    setCurrentAppointmentShown={setCurrentAppointmentShown}
+                                    isAppointmentOpen={isAppointmentOpen}
+                                    setIsAppointmentOpen={setIsAppointmentOpen}
+                                />
+                            </Dashboard.InnerContents>
+                        </Dashboard.Column>
                     } />
-                    <Route exact path="/:appointmentId" element={<Dashboard.Column>
-                        <Dashboard.InnerContents>
-                            <h2>Your schedule</h2>
-                            <AppointmentListContainer
-                                currentAppointmentShown={currentAppointmentShown}
-                                setCurrentAppointmentShown={setCurrentAppointmentShown}
-                                isAppointmentOpen={isAppointmentOpen}
-                                setIsAppointmentOpen={setIsAppointmentOpen}
-                            />
-                        </Dashboard.InnerContents>
-                    </Dashboard.Column>
-                    } />
-                </Routes>
-                <Routes>
-                    
-                    <Route path="/:appointmentId" element={<Dashboard.Column>
-                        <Dashboard.InnerContents>
-                            {currentAppointmentShown.status === 'available'
-                            ? <h2>Available time</h2>    
-                            : <h2>Appointment details</h2>
-                        }
-
-                            {currentAppointmentShown &&
-                                <SingleAppointmentDetailsContainer setIsAppointmentOpen={setIsAppointmentOpen} handleBack={handleBack}/>
-                            }
-                        </Dashboard.InnerContents>
-                    </Dashboard.Column>} />
+                    <Route exact path="/:appointmentId" element={
+                        <SingleAppointmentPage
+                            currentAppointmentShown={currentAppointmentShown}
+                            setCurrentAppointmentShown={setCurrentAppointmentShown}
+                            isAppointmentOpen={isAppointmentOpen}
+                            setIsAppointmentOpen={setIsAppointmentOpen}
+                            handleBack={handleBack}
+                        />}
+                    />
                 </Routes>
 
                 <Routes>
@@ -74,20 +57,7 @@ export const DashboardContainer = () => {
                         <Dashboard.Column>
                             <Dashboard.InnerContents>
                                 <h2>Set your availability</h2>
-                                <Btn style={{marginBottom: 20}}>
-                                    Set one by one
-                                </Btn>
-                                <Btn>
-                                    Set multiple at once
-                                </Btn>
-                            </Dashboard.InnerContents>
-                        </Dashboard.Column>
-                    } />
-                    <Route exact path="/:appointmentId" element={
-                        <Dashboard.Column>
-                            <Dashboard.InnerContents>
-                                <h2>Set your availability</h2>
-                                <Btn style={{marginBottom: 20}}>
+                                <Btn style={{ marginBottom: 20 }}>
                                     Set one by one
                                 </Btn>
                                 <Btn>
@@ -138,10 +108,10 @@ export const DashboardContainer = () => {
                     )}
 
                 </Dashboard.Column>*/}
-                {isAppointmentOpen && 
-                <Dashboard.BackButtonContainer>
-                    <Dashboard.BackButton onClick={handleBack}>&#8592; Go back</Dashboard.BackButton>
-                </Dashboard.BackButtonContainer> 
+                {isAppointmentOpen &&
+                    <Dashboard.BackButtonContainer>
+                        <Dashboard.BackButton onClick={handleBack}>&#8592; Go back</Dashboard.BackButton>
+                    </Dashboard.BackButtonContainer>
                 }
             </Dashboard.Inner>
 

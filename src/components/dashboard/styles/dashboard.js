@@ -29,11 +29,12 @@ export const InnerContainer = styled.div`
 
     @media (min-width: 991px) {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         grid-template-rows: 1fr 100px;
 
         min-height: 50vh;
-        min-width: 80%;
+        min-width: 991px;
+        width: 100%;
 
     }
     

@@ -15,14 +15,13 @@ export const AppointmentListContainer = ({ currentAppointmentShown, setCurrentAp
     const [appointmentsList, setAppointmentsList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortedAppointmentList, setSortedAppointmentList] = useState([]);
-    const [cachedData, setCachedData] = useState([]);
-    
+
     const navigate = useNavigate();
-    
+
     const handleClick = (appointment) => {
         const isDifferentAppointment = appointment.id !== currentAppointmentShown.id
         const noPreviousAppointmentShown = !currentAppointmentShown.id
-        
+
         if (isDifferentAppointment || noPreviousAppointmentShown) {
             setCurrentAppointmentShown(appointment);
             setIsAppointmentOpen(true);
@@ -53,13 +52,6 @@ export const AppointmentListContainer = ({ currentAppointmentShown, setCurrentAp
             setSortedAppointmentList(sortedAppointmentsComponentsArray);
         }
     }, [signedInUser, isLoading, isAppointmentOpen, currentAppointmentShown]);
-    
-    /**
-     * 
-     * napravi snapshot
-     * uporedi sa kesiranim
-     * 
-    *  */
 
     return (
         <AppointmentList>
