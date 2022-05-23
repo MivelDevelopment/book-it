@@ -45,23 +45,6 @@ export const DashboardContainer = () => {
                     />
                 </Routes>
 
-                <Routes>
-                    <Route exact path="/set-appointments" element={
-                        <Dashboard.Column>
-                            <Dashboard.InnerContents>
-                                <h2>Set your availability</h2>
-                                <Btn style={{ marginBottom: 20 }}>
-                                    Set one by one
-                                </Btn>
-                                <Btn>
-                                    Set multiple at once
-                                </Btn>
-                            </Dashboard.InnerContents>
-                        </Dashboard.Column>
-                    } />
-
-                </Routes>
-
                 {/* <Dashboard.Column>
                     {!openAvailability ? (
                         <Dashboard.InnerContents>

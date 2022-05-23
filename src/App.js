@@ -17,6 +17,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/dashboard/*" element={<DashboardContainer />} />
+        <Route path="/set-appointment/single" element={<h2>Single</h2>} />
       </Routes>
       {/* <DashboardContainer /> */}
       {/* <CalendarContainer />

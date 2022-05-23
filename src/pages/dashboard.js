@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { Dashboard } from '../components';
 import { AppointmentListContainer } from '../containers/dashboard/appointment-list/appointment-list-container';
@@ -7,6 +7,8 @@ import { Btn } from '../components';
 
 
 export const DashboardPage = ({ currentAppointmentShown, setCurrentAppointmentShown, isAppointmentOpen, setIsAppointmentOpen }) => {
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -46,7 +48,7 @@ export const DashboardPage = ({ currentAppointmentShown, setCurrentAppointmentSh
                     <Dashboard.Column>
                         <Dashboard.InnerContents>
                             <h2>Set your availability</h2>
-                            <Btn style={{ marginBottom: 20 }}>
+                            <Btn style={{ marginBottom: 20 }} onClick={() => navigate('/set-appointment/single')}>
                                 Set one by one
                             </Btn>
                             <Btn>
